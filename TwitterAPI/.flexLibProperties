@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="com.dborisenko.api.twitter.twitter_internal"/>
+    <classEntry path="com.dborisenko.api.twitter.TwitterAPI"/>
+    <classEntry path="com.dborisenko.utils.URLUtil"/>
+    <classEntry path="com.dborisenko.api.events.DataEvent"/>
+    <classEntry path="com.dborisenko.api.twitter.events.TwitterEvent"/>
+    <classEntry path="com.dborisenko.api.twitter.net.TwitterOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.directMessage.NewDirectMessage"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.directMessage.DestroyDirectMessage"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.directMessage.LoadDirectMessages"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.directMessage.LoadSentDirectMessages"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.search.Search"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.timeline.LoadFriendsTimeline"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.timeline.LoadMentions"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.favorite.LoadFavorites"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.timeline.LoadUserTimeline"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.status.ShowStatus"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.status.UpdateStatus"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.status.DestroyStatus"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.favorite.CreateFavorite"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.favorite.DestroyFavorite"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.account.VerifyCredentials"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.user.LoadUserInfo"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.friendship.CreateFriendships"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.friendship.DestroyFriendships"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.block.CreateBlock"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.block.DestroyBlock"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.user.LoadFriends"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.user.LoadFollowers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.block.LoadBlockedUsers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.timeline.LoadHomeTimeline"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.AsyncQueue"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.status.Retweet"/>
+    <classEntry path="com.dborisenko.api.twitter.net.ListOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.data.TwitterList"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.CreateList"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.UpdateList"/>
+    <classEntry path="com.dborisenko.api.twitter.net.ListsOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.data.collections.ListsCollection"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListsOfUser"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.ShowList"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.DestroyList"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListStatuses"/>
+    <classEntry path="com.dborisenko.api.twitter.net.HashOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.account.RateLimitStatus"/>
+    <classEntry path="com.dborisenko.api.twitter.data.TwitterRateLimit"/>
+    <classEntry path="com.dborisenko.api.interfaces.IOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.interfaces.ITwitterOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.GetListMembers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.PostListMembers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.DeleteListMembers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.GetListMemberships"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.GetListSubscriptions"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.PagingLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingOperation"/>
+    <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingCollection"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.FriendsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.FollowersLoader"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
