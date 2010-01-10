@@ -1,4 +1,4 @@
-/** BaseUsersLoaderHelper.as
+/** PagingLoader.as
  * 
  * @author Denis Borisenko
  * 
