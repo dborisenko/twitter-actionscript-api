@@ -48,16 +48,19 @@
     <classEntry path="com.dborisenko.api.twitter.data.TwitterRateLimit"/>
     <classEntry path="com.dborisenko.api.interfaces.IOperation"/>
     <classEntry path="com.dborisenko.api.twitter.interfaces.ITwitterOperation"/>
-    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.GetListMembers"/>
-    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.PostListMembers"/>
-    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.DeleteListMembers"/>
-    <classEntry path="com.dborisenko.api.twitter.commands.list.GetListMemberships"/>
-    <classEntry path="com.dborisenko.api.twitter.commands.list.GetListSubscriptions"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.LoadListMembers"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.AddListMember"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listMembers.DeleteListMember"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListMemberships"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListSubscriptions"/>
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.PagingLoader"/>
     <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingOperation"/>
     <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingCollection"/>
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.FriendsLoader"/>
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.FollowersLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListsOfUserLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListMembershipsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListSubscriptionsLoader"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

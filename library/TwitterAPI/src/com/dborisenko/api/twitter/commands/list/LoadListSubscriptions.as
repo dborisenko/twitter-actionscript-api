@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.list
 {
+	import com.dborisenko.api.twitter.interfaces.IPagingOperation;
 	import com.dborisenko.api.twitter.net.ListsOperation;
 	
 	/**
@@ -15,7 +16,7 @@ package com.dborisenko.api.twitter.commands.list
 	 * @author Denis Borisenko
 	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-GET-list-subscriptions
 	 */
-	public class GetListSubscriptions extends ListsOperation
+	public class LoadListSubscriptions extends ListsOperation implements IPagingOperation
 	{
 		protected static const URL:String = "http://api.twitter.com/1/{user}/lists/subscriptions.xml";
 		
@@ -28,7 +29,7 @@ package com.dborisenko.api.twitter.commands.list
 		 * 								Example: cursor=-1300794057949944903
 		 * 
 		 */
-		public function GetListSubscriptions(user:String, cursor:String=null)
+		public function LoadListSubscriptions(user:String, cursor:String="-1")
 		{
 			super(URL.replace(/\{user\}/gi, user));
 			resultFormat = RESULT_FORMAT_XML;
@@ -36,6 +37,22 @@ package com.dborisenko.api.twitter.commands.list
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
 			parameters = {cursor: cursor};
+		}
+		
+		public function get cursor():String
+		{
+			return parameters["cursor"];
+		}
+		public function set cursor(value:String):void
+		{
+			if (value)
+			{
+				parameters["cursor"] = value;
+			}
+			else if (parameters["cursor"])
+			{
+				delete parameters["cursor"];
+			}
 		}
 	}
 }

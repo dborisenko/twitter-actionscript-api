@@ -16,7 +16,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 	 * @author Denis Borisenko
 	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-DELETE-list-members
 	 */
-	public class DeleteListMembers extends ListOperation
+	public class DeleteListMember extends ListOperation
 	{
 		protected static const URL:String = "http://api.twitter.com/1/{user}/{list_id}/members.xml";
 		
@@ -26,7 +26,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 		 * @param userIdToDeleteFromList		Required. The id of the member you wish to remove from the list.
 		 * 
 		 */
-		public function DeleteListMembers(ownerUser:String, listId:String, userIdToDeleteFromList:String)
+		public function DeleteListMember(ownerUser:String, listId:String, userIdToDeleteFromList:String)
 		{
 			super(URL.replace(/\{user\}/gi, ownerUser).replace(/\{list_id\}/gi, listId));
 			resultFormat = RESULT_FORMAT_XML;

@@ -16,7 +16,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 	 * @author Denis Borisenko
 	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-POST-list-members
 	 */
-	public class PostListMembers extends ListOperation
+	public class AddListMember extends ListOperation
 	{
 		protected static const URL:String = "http://api.twitter.com/1/{user}/{list_id}/members.xml";
 		
@@ -26,7 +26,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 		 * @param userIdToAddToList			Required. The id of the user to add as a member of the list.
 		 * 
 		 */
-		public function PostListMembers(ownerUser:String, listId:String, userIdToAddToList:String)
+		public function AddListMember(ownerUser:String, listId:String, userIdToAddToList:String)
 		{
 			super(URL.replace(/\{user\}/gi, ownerUser).replace(/\{list_id\}/gi, listId));
 			resultFormat = RESULT_FORMAT_XML;
