@@ -21,8 +21,6 @@ package com.dborisenko.api.twitter.net
 	import mx.rpc.Fault;
 	import mx.rpc.events.FaultEvent;
 	
-	import org.iotashan.oauth.OAuthRequest;
-	
 	use namespace twitter_internal;
 	
 	[Event(name="complete",type="com.dborisenko.api.twitter.events.TwitterEvent")]
@@ -75,6 +73,10 @@ package com.dborisenko.api.twitter.net
 			{
 				faultString = info.toString();
 			}
+//			var fault:FaultObject = new FaultObject();
+//			fault.faultString = faultString;
+//			fault.sender = this;
+			
 			dispatchEvent(new TwitterEvent(TwitterEvent.COMPLETE, faultString, false));
 		}
 		

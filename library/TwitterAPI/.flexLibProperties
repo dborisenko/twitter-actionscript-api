@@ -61,6 +61,10 @@
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListsOfUserLoader"/>
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListMembershipsLoader"/>
     <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListSubscriptionsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.user.SearchUsers"/>
+    <classEntry path="com.dborisenko.api.vo.FaultObject"/>
+    <classEntry path="com.dborisenko.api.events.StatusEvent"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListMembersLoader"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

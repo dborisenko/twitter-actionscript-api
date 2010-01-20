@@ -3,6 +3,7 @@
  * @author Denis Borisenko
  * 
  * Part of TwitterAPI project. Copyright (c) 2010.
+ * http://code.google.com/p/twitter-actionscript-api/
  */
 package com.dborisenko.api.twitter.utils.loaders
 {
@@ -13,7 +14,8 @@ package com.dborisenko.api.twitter.utils.loaders
 	
 	public class ListSubscriptionsLoader extends PagingLoader
 	{
-		public function ListSubscriptionsLoader(api:TwitterAPI, postType:String=TwitterAPI.POST_TYPE_NORMAL, priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
+		public function ListSubscriptionsLoader(api:TwitterAPI, postType:String=TwitterAPI.POST_TYPE_NORMAL, 
+												priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
 		{
 			super(api, LoadListSubscriptions, postType, priority, list);
 		}

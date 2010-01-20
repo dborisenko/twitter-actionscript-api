@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.utils.loaders
 {
+	import com.dborisenko.api.events.StatusEvent;
 	import com.dborisenko.api.twitter.TwitterAPI;
 	import com.dborisenko.api.twitter.events.TwitterEvent;
 	import com.dborisenko.api.twitter.interfaces.IPagingCollection;
@@ -26,6 +27,7 @@ package com.dborisenko.api.twitter.utils.loaders
 	[Event(name="fault", type="mx.rpc.events.FaultEvent")]
 	[Event(name="result", type="mx.rpc.events.ResultEvent")]
 	[Event(name="progress", type="flash.events.ProgressEvent")]
+	[Event(name="statusChange", type="com.dborisenko.api.events.StatusEvent")]
 	public class PagingLoader extends EventDispatcher
 	{
 		protected static const START_CURSOR:String = "-1";
@@ -65,12 +67,22 @@ package com.dborisenko.api.twitter.utils.loaders
 		{
 			return _status;
 		}
+		
+		protected function updateStatus(newStatus:String):void
+		{
+			if (_status == newStatus)
+				return;
+			
+			var oldStatus:String = _status;
+			_status = newStatus;
+			dispatchEvent(new StatusEvent(StatusEvent.STATUS_CHANGE, oldStatus, _status));
+		}
 
 		public function load():void
 		{
-			if (_status != STATUS_IN_PROGRESS)
+			if (status != STATUS_IN_PROGRESS)
 			{
-				switch (_status)
+				switch (status)
 				{
 					case STATUS_NOT_LOADED:
 					case STATUS_RESETED:
@@ -85,21 +97,21 @@ package com.dborisenko.api.twitter.utils.loaders
 		
 		public function cancel():void
 		{
-			_status = STATUS_CANCELED;
+			updateStatus(STATUS_CANCELED);
 		}
 		
 		public function reset():void
 		{
-			if (_status != STATUS_IN_PROGRESS)
+			if (status != STATUS_IN_PROGRESS)
 			{
 				nextCursor = START_CURSOR;
-				_status = STATUS_RESETED;
+				updateStatus(STATUS_RESETED);
 			}
 		}
 		
 		public function restart():void
 		{
-			if (_status != STATUS_IN_PROGRESS)
+			if (status != STATUS_IN_PROGRESS)
 			{
 				reset();
 				load();
@@ -108,7 +120,7 @@ package com.dborisenko.api.twitter.utils.loaders
 		
 		public function get isCompleted():Boolean
 		{
-			return _status == STATUS_COMPLETE;
+			return status == STATUS_COMPLETE;
 		}
 		
 		protected function executeNextOperation():void
@@ -120,7 +132,7 @@ package com.dborisenko.api.twitter.utils.loaders
 				
 				currentOperation.addEventListener(TwitterEvent.COMPLETE, handleOperationComplete);
 				
-				_status = STATUS_IN_PROGRESS;
+				updateStatus(STATUS_IN_PROGRESS);
 				api.post(currentOperation, postType, priority);
 			}
 			else
@@ -155,7 +167,7 @@ package com.dborisenko.api.twitter.utils.loaders
 						fault("Incorrect data received from the server");
 					}
 					
-					if (_status != STATUS_CANCELED)
+					if (status != STATUS_CANCELED)
 					{
 						if (nextCursor && nextCursor != "")
 						{
@@ -182,7 +194,7 @@ package com.dborisenko.api.twitter.utils.loaders
 			}
 			else
 			{
-				if (_status != STATUS_CANCELED)
+				if (status != STATUS_CANCELED)
 				{
 					fault(event.data);
 				}
@@ -191,13 +203,13 @@ package com.dborisenko.api.twitter.utils.loaders
 		
 		protected function result():void
 		{
-			_status = STATUS_COMPLETE;
+			updateStatus(STATUS_COMPLETE);
 			dispatchEvent(new ResultEvent(ResultEvent.RESULT, false, true, list));
 		}
 		
 		protected function fault(info:Object):void
 		{
-			_status = STATUS_FAULT;
+			updateStatus(STATUS_FAULT);
 			var f:Fault = info as Fault;
 			if (!f && info)
 			{
@@ -208,7 +220,7 @@ package com.dborisenko.api.twitter.utils.loaders
 		
 		protected function progress():void
 		{
-			_status = STATUS_IN_PROGRESS;
+			updateStatus(STATUS_IN_PROGRESS);
 			dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS));
 		}
 		
