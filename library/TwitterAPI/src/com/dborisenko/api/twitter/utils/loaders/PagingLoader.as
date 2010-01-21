@@ -46,12 +46,12 @@ package com.dborisenko.api.twitter.utils.loaders
 		protected var api:TwitterAPI;
 		protected var postType:String = TwitterAPI.POST_TYPE_NORMAL;
 		protected var priority:int = TwitterAPI.PRIORITY_NORMAL;
-		protected var operationClassFactory:ClassFactory;
+		protected var operationClass:Class;
 		
 		protected var currentOperation:TwitterOperation;
 		protected var nextCursor:String = START_CURSOR;
 		
-		public function PagingLoader(api:TwitterAPI, operationClass:Class, 
+		public function PagingLoader(api:TwitterAPI, operationClass:Class=null, 
 											  postType:String=TwitterAPI.POST_TYPE_NORMAL,
 											  priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
 		{
@@ -59,7 +59,7 @@ package com.dborisenko.api.twitter.utils.loaders
 			this.api = api;
 			this.postType = postType;
 			this.priority = priority;
-			this.operationClassFactory = new ClassFactory(operationClass);
+			this.operationClass = operationClass;
 			this._list = list;
 		}
 		
@@ -123,9 +123,14 @@ package com.dborisenko.api.twitter.utils.loaders
 			return status == STATUS_COMPLETE;
 		}
 		
+		protected function createOperation():TwitterOperation
+		{
+			return new operationClass();
+		}
+		
 		protected function executeNextOperation():void
 		{
-			currentOperation = operationClassFactory.newInstance() as TwitterOperation;
+			currentOperation = createOperation();
 			if (currentOperation is IPagingOperation && nextCursor)
 			{
 				IPagingOperation(currentOperation).cursor = nextCursor;

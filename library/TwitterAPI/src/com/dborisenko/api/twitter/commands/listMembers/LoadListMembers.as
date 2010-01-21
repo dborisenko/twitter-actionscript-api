@@ -17,7 +17,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 	 */
 	public class LoadListMembers extends UsersOperation
 	{
-		protected static const URL:String = "http://api.twitter.com/1/user/{listId}/members.xml";
+		protected static const URL:String = "http://api.twitter.com/1/{user}/{listId}/members.xml";
 		
 		/**
 		 * 
@@ -29,9 +29,9 @@ package com.dborisenko.api.twitter.commands.listMembers
 		 * 							Example: cursor=-1300794057949944903
 		 * 
 		 */
-		public function LoadListMembers(listId:String, cursor:String=null)
+		public function LoadListMembers(user:String, listId:String, cursor:String="-1")
 		{
-			super(URL.replace(/\{listId\}/gi, listId));
+			super(URL.replace(/\{user\}/gi, user).replace(/\{listId\}/gi, listId));
 			resultFormat = RESULT_FORMAT_XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
