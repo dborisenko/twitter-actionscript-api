@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.list
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.interfaces.IPagingOperation;
 	import com.dborisenko.api.twitter.net.ListsOperation;
 	
@@ -35,7 +36,7 @@ package com.dborisenko.api.twitter.commands.list
 		public function LoadListsOfUser(user:String, cursor:String="-1")
 		{
 			super(URL.replace(/\{user\}/gi, user));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

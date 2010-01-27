@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.directMessage
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.DirectMessagesOperation;
 	
 	/**
@@ -37,7 +38,7 @@ package com.dborisenko.api.twitter.commands.directMessage
 		public function LoadDirectMessages(sinceId:String=null, maxId:String=null, count:int=-1, page:int=-1)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

@@ -5,7 +5,7 @@
  * Part of TwitterAPI project. Copyright (c) 2010.
  * http://code.google.com/p/twitter-actionscript-api/
  */
-package com.dborisenko.api.twitter.utils.loaders
+package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 {
 	import com.dborisenko.api.twitter.TwitterAPI;
 	import com.dborisenko.api.twitter.commands.list.LoadListsOfUser;

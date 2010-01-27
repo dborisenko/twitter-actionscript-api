@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.favorite
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.StatusesOperation;
 	
 	/**
@@ -29,7 +30,7 @@ package com.dborisenko.api.twitter.commands.favorite
 		public function LoadFavorites(id:String=null, page:int=-1)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

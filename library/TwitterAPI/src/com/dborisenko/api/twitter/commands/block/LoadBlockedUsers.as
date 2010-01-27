@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.block
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
 	/**
@@ -29,7 +30,7 @@ package com.dborisenko.api.twitter.commands.block
 		public function LoadBlockedUsers(page:int=-1)
 		{
 			super(URL, false, true);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

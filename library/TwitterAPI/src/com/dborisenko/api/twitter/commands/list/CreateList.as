@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.list
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.ListOperation;
 	
 	/**
@@ -31,7 +32,7 @@ package com.dborisenko.api.twitter.commands.list
 		public function CreateList(user:String, name:String, mode:String=null, description:String=null)
 		{
 			super(URL.replace(/\{user\}/gi, user));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

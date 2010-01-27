@@ -7,14 +7,15 @@
  */
 package com.dborisenko.api.twitter.net
 {
-	import com.dborisenko.api.HttpOperation;
+	import com.dborisenko.api.enums.ResultFormat;
 	
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 
 	public class HashOperation extends TwitterOperation
 	{
-		public function HashOperation(url:String, requiresAuthentication:Boolean=true, params:Object=null, resultFormat:String=HttpOperation.RESULT_FORMAT_XML)
+		public function HashOperation(url:String, requiresAuthentication:Boolean=true, 
+									  params:Object=null, resultFormat:String=ResultFormat.XML)
 		{
 			super(url, requiresAuthentication, params, resultFormat);
 		}

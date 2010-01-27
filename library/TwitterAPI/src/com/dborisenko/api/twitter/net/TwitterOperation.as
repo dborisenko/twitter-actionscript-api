@@ -9,6 +9,7 @@ package com.dborisenko.api.twitter.net
 {
 	import com.adobe.protocols.dict.events.ErrorEvent;
 	import com.dborisenko.api.HttpOperation;
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.TwitterAPI;
 	import com.dborisenko.api.twitter.data.TwitterUser;
 	import com.dborisenko.api.twitter.events.TwitterEvent;
@@ -35,7 +36,7 @@ package com.dborisenko.api.twitter.net
 		protected var _apiRateLimited:Boolean = true;
 		
 		public function TwitterOperation(url:String, requiresAuthentication:Boolean = true, params:Object=null, 
-										 resultFormat:String=HttpOperation.RESULT_FORMAT_XML)
+										 resultFormat:String=ResultFormat.XML)
 		{
 			super(url, params, resultFormat);
 			this._requiresAuthentication = requiresAuthentication;
@@ -122,7 +123,7 @@ package com.dborisenko.api.twitter.net
 				{
 					var hName:String = header.name;
 					var hValue:String = header.value;
-					this.service.headers[hName] = hValue;
+					headers[hName] = hValue;
 				}
 			}
 		}
@@ -162,7 +163,7 @@ package com.dborisenko.api.twitter.net
 		
 		override protected function handleResult(event:Event):void
 		{
-			if (resultFormat == RESULT_FORMAT_XML)
+			if (resultFormat == ResultFormat.XML)
 			{
 				var xml:XML = getXML();
 				if (xml.name() == "hash" && xml.contains("error"))
@@ -174,7 +175,7 @@ package com.dborisenko.api.twitter.net
 					result(data);
 				}
 			}
-			else if (resultFormat == RESULT_FORMAT_JSON)
+			else if (resultFormat == ResultFormat.JSON)
 			{
 				result(data);
 			}

@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.user
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.UserOperation;
 	
 	/**
@@ -35,7 +36,7 @@ package com.dborisenko.api.twitter.commands.user
 		public function LoadUserInfo(id:String, userId:String=null, screenName:String=null)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

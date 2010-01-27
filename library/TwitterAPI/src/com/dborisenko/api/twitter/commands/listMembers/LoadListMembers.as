@@ -7,6 +7,8 @@
  */
 package com.dborisenko.api.twitter.commands.listMembers
 {
+	import com.dborisenko.api.enums.ResultFormat;
+	import com.dborisenko.api.twitter.interfaces.IPagingOperation;
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
 	/**
@@ -15,7 +17,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 	 * @author Denis Borisenko
 	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-GET-list-members
 	 */
-	public class LoadListMembers extends UsersOperation
+	public class LoadListMembers extends UsersOperation implements IPagingOperation
 	{
 		protected static const URL:String = "http://api.twitter.com/1/{user}/{listId}/members.xml";
 		
@@ -32,11 +34,27 @@ package com.dborisenko.api.twitter.commands.listMembers
 		public function LoadListMembers(user:String, listId:String, cursor:String="-1")
 		{
 			super(URL.replace(/\{user\}/gi, user).replace(/\{listId\}/gi, listId));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
 			parameters = {list_id: listId, cursor: cursor};
+		}
+		
+		public function get cursor():String
+		{
+			return parameters["cursor"];
+		}
+		public function set cursor(value:String):void
+		{
+			if (value)
+			{
+				parameters["cursor"] = value;
+			}
+			else if (parameters["cursor"])
+			{
+				delete parameters["cursor"];
+			}
 		}
 	}
 }

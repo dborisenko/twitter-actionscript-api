@@ -8,14 +8,18 @@
 package com.dborisenko.api.twitter.data
 {
 	import com.dborisenko.api.vo.ValueObject;
+	
+	import mx.events.FlexEvent;
 
+	[Bindable]
+	[Event(name="dataChange", type="mx.events.FlexEvent")]
 	public class TwitterList extends ValueObject
 	{
 		public static const MODE_PRIVATE:String = "private";
 		public static const MODE_PUBLIC:String = "public";
 		
 		public var id:String;
-		public var name:String;
+		private var _name:String;
 		public var fullName:String;
 		public var slug:String;
 		public var description:String;
@@ -31,6 +35,19 @@ package com.dborisenko.api.twitter.data
 			parseXML(list);
 		}
 		
+		[Bindable("dataChange")]
+		public function get name():String
+		{
+			return _name;
+		}
+		public function set name(value:String):void
+		{
+			if (_name == value)
+				return;
+			_name = value;
+			dispatchDataChangeEvent();
+		}
+
 		public function parseXML(list:Object):void
 		{
 			if (!list)
@@ -46,6 +63,11 @@ package com.dborisenko.api.twitter.data
 			uri = list.uri;
 			mode = list.mode;
 			user = new TwitterUser(list.user);
+		}
+		
+		protected function dispatchDataChangeEvent():void
+		{
+			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 		}
 	}
 }

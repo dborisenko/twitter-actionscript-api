@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.directMessage
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.DirectMessageOperation;
 	
 	/**
@@ -28,7 +29,7 @@ package com.dborisenko.api.twitter.commands.directMessage
 		public function DestroyDirectMessage(id:String)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.listMembers
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.ListOperation;
 	
 	/**
@@ -29,7 +30,7 @@ package com.dborisenko.api.twitter.commands.listMembers
 		public function DeleteListMember(ownerUser:String, listId:String, userIdToDeleteFromList:String)
 		{
 			super(URL.replace(/\{user\}/gi, ownerUser).replace(/\{list_id\}/gi, listId));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_DELETE;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

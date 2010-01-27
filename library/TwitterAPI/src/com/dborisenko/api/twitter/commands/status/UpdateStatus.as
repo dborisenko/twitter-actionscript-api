@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.status
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.StatusOperation;
 	
 	/**
@@ -34,7 +35,7 @@ package com.dborisenko.api.twitter.commands.status
 		public function UpdateStatus(statusText:String, inReplyToStatusId:String=null)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

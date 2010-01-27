@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.user
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
 	/**
@@ -36,7 +37,7 @@ package com.dborisenko.api.twitter.commands.user
 		public function SearchUsers(query:String, perPage:int=-1, page:int=-1)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

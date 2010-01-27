@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.user
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.interfaces.IPagingOperation;
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
@@ -42,7 +43,7 @@ package com.dborisenko.api.twitter.commands.user
 		public function LoadFollowers(id:String=null, userId:String=null, screenName:String=null, cursor:String="-1")
 		{
 			super(URL, true);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

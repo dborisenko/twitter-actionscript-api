@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.account
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.data.TwitterRateLimit;
 	import com.dborisenko.api.twitter.net.HashOperation;
 	
@@ -32,7 +33,7 @@ package com.dborisenko.api.twitter.commands.account
 		public function RateLimitStatus()
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

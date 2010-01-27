@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.block
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.UserOperation;
 	
 	/**
@@ -38,7 +39,7 @@ package com.dborisenko.api.twitter.commands.block
 		public function CreateBlock(id:String, userId:String=null, screenName:String=null)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

@@ -7,8 +7,8 @@
  */
 package com.dborisenko.api.twitter.commands.search
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.SearchOperation;
-	import com.dborisenko.utils.URLUtil;
 	
 	/**
 	 * Returns tweets that match a specified query.
@@ -52,7 +52,7 @@ package com.dborisenko.api.twitter.commands.search
 							   geocode:String=null, showUser:String=null)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_JSON;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = false;
 			_apiRateLimited = true;

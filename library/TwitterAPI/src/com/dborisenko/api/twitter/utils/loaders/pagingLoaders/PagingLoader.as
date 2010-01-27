@@ -5,7 +5,7 @@
  * Part of TwitterAPI project. Copyright (c) 2009.
  * http://code.google.com/p/twitter-actionscript-api/
  */
-package com.dborisenko.api.twitter.utils.loaders
+package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 {
 	import com.dborisenko.api.events.StatusEvent;
 	import com.dborisenko.api.twitter.TwitterAPI;
@@ -52,8 +52,8 @@ package com.dborisenko.api.twitter.utils.loaders
 		protected var nextCursor:String = START_CURSOR;
 		
 		public function PagingLoader(api:TwitterAPI, operationClass:Class=null, 
-											  postType:String=TwitterAPI.POST_TYPE_NORMAL,
-											  priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
+									 postType:String=TwitterAPI.POST_TYPE_NORMAL,
+									 priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
 		{
 			super();
 			this.api = api;
@@ -77,7 +77,7 @@ package com.dborisenko.api.twitter.utils.loaders
 			_status = newStatus;
 			dispatchEvent(new StatusEvent(StatusEvent.STATUS_CHANGE, oldStatus, _status));
 		}
-
+		
 		public function load():void
 		{
 			if (status != STATUS_IN_PROGRESS)
@@ -106,6 +106,7 @@ package com.dborisenko.api.twitter.utils.loaders
 			{
 				nextCursor = START_CURSOR;
 				updateStatus(STATUS_RESETED);
+				list.removeAll();
 			}
 		}
 		

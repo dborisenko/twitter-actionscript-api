@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.net
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.data.TwitterSearch;
 	import com.dborisenko.api.twitter.data.TwitterStatus;
 	
@@ -18,7 +19,7 @@ package com.dborisenko.api.twitter.net
 	{
 		public function SearchOperation(url:String)
 		{
-			super(url, false, params, RESULT_FORMAT_JSON);
+			super(url, false, params, ResultFormat.JSON);
 		}
 		
 		[Bindable]

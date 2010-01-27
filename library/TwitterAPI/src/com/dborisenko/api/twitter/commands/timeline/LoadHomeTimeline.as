@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter.commands.timeline
 {
+	import com.dborisenko.api.enums.ResultFormat;
 	import com.dborisenko.api.twitter.net.StatusesOperation;
 	
 	/**
@@ -42,7 +43,7 @@ package com.dborisenko.api.twitter.commands.timeline
 		public function LoadHomeTimeline(sinceId:String=null, maxId:String=null, count:int=-1, page:int=-1)
 		{
 			super(URL);
-			resultFormat = RESULT_FORMAT_XML;
+			resultFormat = ResultFormat.XML;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

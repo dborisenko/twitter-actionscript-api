@@ -53,18 +53,24 @@
     <classEntry path="com.dborisenko.api.twitter.commands.listMembers.DeleteListMember"/>
     <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListMemberships"/>
     <classEntry path="com.dborisenko.api.twitter.commands.list.LoadListSubscriptions"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.PagingLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.PagingLoader"/>
     <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingOperation"/>
     <classEntry path="com.dborisenko.api.twitter.interfaces.IPagingCollection"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.FriendsLoader"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.FollowersLoader"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListsOfUserLoader"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListMembershipsLoader"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListSubscriptionsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.FriendsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.FollowersLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.ListsOfUserLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.ListMembershipsLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.ListSubscriptionsLoader"/>
     <classEntry path="com.dborisenko.api.twitter.commands.user.SearchUsers"/>
     <classEntry path="com.dborisenko.api.vo.FaultObject"/>
     <classEntry path="com.dborisenko.api.events.StatusEvent"/>
-    <classEntry path="com.dborisenko.api.twitter.utils.loaders.ListMembersLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.pagingLoaders.ListMembersLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.utils.loaders.sinceLoaders.MemorizeLoader"/>
+    <classEntry path="com.dborisenko.api.twitter.interfaces.ISinceIdOperation"/>
+    <classEntry path="com.dborisenko.api.delegates.IServiceDelegate"/>
+    <classEntry path="com.dborisenko.api.delegates.URLLoaderDelegate"/>
+    <classEntry path="com.dborisenko.api.delegates.HTTPServiceDelegate"/>
+    <classEntry path="com.dborisenko.api.enums.ResultFormat"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
