@@ -71,6 +71,7 @@
     <classEntry path="com.dborisenko.api.delegates.URLLoaderDelegate"/>
     <classEntry path="com.dborisenko.api.delegates.HTTPServiceDelegate"/>
     <classEntry path="com.dborisenko.api.enums.ResultFormat"/>
+    <classEntry path="com.dborisenko.api.twitter.commands.listSubscribers.SubscribeList"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -163,9 +163,7 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 						}
 						else 
 						{
-							_list.disableAutoUpdate();
 							_list.addAll(event.data as ArrayCollection);
-							_list.enableAutoUpdate();
 						}
 					}
 					else
