@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<meta content="OAuthRequest,org.iotashan.oauth.OAuthRequest,HTTP_METHOD_GET,HTTP_METHOD_HEAD,HTTP_METHOD_POST,RESULT_TYPE_HEADER,RESULT_TYPE_POST,RESULT_TYPE_URL_STRING,consumer,httpMethod,requestParams,requestURL,token,buildRequest,getSignableString" name="keywords">
+<title>org.iotashan.oauth.OAuthRequest</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'OAuthRequest - API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?org/iotashan/oauth/OAuthRequest.html&amp;org/iotashan/oauth/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;OAuthRequest</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class OAuthRequest"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">org.iotashan.oauth</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class OAuthRequest</td>
+</tr>
+</table>
+<p></p>
+  The OAuthRequest class is the workhorse class.
+  This is the class you will use to generate and sign your OAuth requests.
+ <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#consumer">consumer</a> : <a href="../oauth/OAuthConsumer.html">OAuthConsumer</a>
+<div class="summaryTableDescription">
+     </div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#httpMethod">httpMethod</a> : String<div class="summaryTableDescription">
+   The HTTP request method used to send the request.</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#requestParams">requestParams</a> : Object<div class="summaryTableDescription">
+   The requestParams object must be a simple object with name value pairs, with the value being
+   able to be converted to a string.</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#requestURL">requestURL</a> : String<div class="summaryTableDescription">
+   The requestURL MUST include the scheme, authority, and path, and MUST exclude the query string.</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#token">token</a> : <a href="../oauth/OAuthToken.html">OAuthToken</a>
+<div class="summaryTableDescription">
+     </div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#OAuthRequest()">OAuthRequest</a>(httpMethod:String, requestURL:String, requestParams:Object = null, consumer:<a href="OAuthConsumer.html">OAuthConsumer</a> = null, token:<a href="OAuthToken.html">OAuthToken</a> = null)</div>
+<div class="summaryTableDescription">
+   Constructor method.</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#buildRequest()">buildRequest</a>(signatureMethod:<a href="IOAuthSignatureMethod.html">IOAuthSignatureMethod</a>, resultType:String, headerRealm:String = ""):*</div>
+<div class="summaryTableDescription">
+   Builds out the request as you need to use it.</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getSignableString()">getSignableString</a>():String</div>
+<div class="summaryTableDescription">
+   Returns the signable string
+  </div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HTTP_METHOD_GET">HTTP_METHOD_GET</a> : String = "GET"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HTTP_METHOD_HEAD">HTTP_METHOD_HEAD</a> : String = "HEAD"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HTTP_METHOD_POST">HTTP_METHOD_POST</a> : String = "POST"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RESULT_TYPE_HEADER">RESULT_TYPE_HEADER</a> : String = "header"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RESULT_TYPE_POST">RESULT_TYPE_POST</a> : String = "post"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RESULT_TYPE_URL_STRING">RESULT_TYPE_URL_STRING</a> : String = "url"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">OAuthRequest</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="consumer"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">consumer</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>consumer:<a href="../oauth/OAuthConsumer.html">OAuthConsumer</a></code>&nbsp;&nbsp;[read-write]<p>
+     </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get consumer():<a href="../oauth/OAuthConsumer.html">OAuthConsumer</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set consumer(value:<a href="../oauth/OAuthConsumer.html">OAuthConsumer</a>):void</code>
+<br>
+</div>
+<a name="httpMethod"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">httpMethod</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>httpMethod:String</code>&nbsp;&nbsp;[read-write]<p>
+   The HTTP request method used to send the request. Value MUST be uppercase, for example:
+   HEAD, GET , POST, etc.
+  </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get httpMethod():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set httpMethod(value:String):void</code>
+<br>
+</div>
+<a name="requestParams"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestParams</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>requestParams:Object</code>&nbsp;&nbsp;[read-write]<p>
+   The requestParams object must be a simple object with name value pairs, with the value being
+   able to be converted to a string. Example: { title: "My Book title", pageCount: 10, inLibrary: true }
+  </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get requestParams():Object</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set requestParams(value:Object):void</code>
+<br>
+</div>
+<a name="requestURL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestURL</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>requestURL:String</code>&nbsp;&nbsp;[read-write]<p>
+   The requestURL MUST include the scheme, authority, and path, and MUST exclude the query string.
+  </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get requestURL():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set requestURL(value:String):void</code>
+<br>
+</div>
+<a name="token"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">token</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>token:<a href="../oauth/OAuthToken.html">OAuthToken</a></code>&nbsp;&nbsp;[read-write]<p>
+     </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get token():<a href="../oauth/OAuthToken.html">OAuthToken</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set token(value:<a href="../oauth/OAuthToken.html">OAuthToken</a>):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="OAuthRequest()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">OAuthRequest</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function OAuthRequest(httpMethod:String, requestURL:String, requestParams:Object = null, consumer:<a href="OAuthConsumer.html">OAuthConsumer</a> = null, token:<a href="OAuthToken.html">OAuthToken</a> = null)</code><p>
+   Constructor method.
+  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">httpMethod</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">requestURL</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">requestParams</span>:Object</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">consumer</span>:<a href="OAuthConsumer.html">OAuthConsumer</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">token</span>:<a href="OAuthToken.html">OAuthToken</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="buildRequest()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">buildRequest</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function buildRequest(signatureMethod:<a href="IOAuthSignatureMethod.html">IOAuthSignatureMethod</a>, resultType:String, headerRealm:String = ""):*</code><p>
+   Builds out the request as you need to use it.
+  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">signatureMethod</span>:<a href="IOAuthSignatureMethod.html">IOAuthSignatureMethod</a></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">resultType</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">headerRealm</span>:String</code> (default = "<code></code>")<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="getSignableString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getSignableString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getSignableString():String</code><p>
+   Returns the signable string
+  </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="HTTP_METHOD_GET"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">HTTP_METHOD_GET</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const HTTP_METHOD_GET:String = "GET"</code>
+</div>
+<a name="HTTP_METHOD_HEAD"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">HTTP_METHOD_HEAD</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const HTTP_METHOD_HEAD:String = "HEAD"</code>
+</div>
+<a name="HTTP_METHOD_POST"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">HTTP_METHOD_POST</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const HTTP_METHOD_POST:String = "POST"</code>
+</div>
+<a name="RESULT_TYPE_HEADER"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RESULT_TYPE_HEADER</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const RESULT_TYPE_HEADER:String = "header"</code>
+</div>
+<a name="RESULT_TYPE_POST"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RESULT_TYPE_POST</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const RESULT_TYPE_POST:String = "post"</code>
+</div>
+<a name="RESULT_TYPE_URL_STRING"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RESULT_TYPE_URL_STRING</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const RESULT_TYPE_URL_STRING:String = "url"</code>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
