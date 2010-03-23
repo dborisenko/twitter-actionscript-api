@@ -43,6 +43,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   Twitter API class.
+  <br/><br/>
+  Example:<br/>
+  <code>
+  var twitterApi:TwitterAPI = new TwitterAPI();<br/>
+  twitterApi.connection.setAccessToken(key, secret);<br/>
+  var op:TwitterOperation = new VerifyCredentials();<br/>
+  var handler:Function = function (event:TwitterEvent):void<br/>
+  {<br/>
+          op.removeEventListener(TwitterEvent.COMPLETE, handler);<br/>
+          if (event.success)<br/>
+          {<br/>
+                  trace("Credentials verified. User is: " + TwitterUser(event.data).screenName);<br/>
+          }<br/>
+          else<br/>
+          {<br/>
+                  trace("Verification error. Twitter error message: " + event.data);<br/>
+          }<br/>
+  };<br/>
+  op.addEventListener(TwitterEvent.COMPLETE, handler);<br/>
+  twitterApi.post(op, TwitterAPI.POST_TYPE_ASYNC_STATIC, TwitterAPI.PRIORITY_HIGHEST);<br/>
+  </code>
+  
   <p></p>
 <br>
 <hr>
