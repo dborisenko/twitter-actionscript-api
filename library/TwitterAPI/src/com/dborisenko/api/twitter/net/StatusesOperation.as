@@ -12,6 +12,12 @@ package com.dborisenko.api.twitter.net
 	
 	import flash.events.Event;
 	
+	/**
+	 * 
+	 * Base operation for work with Collection of Twitter Statuses
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class StatusesOperation extends TwitterOperation
 	{	
 		private var isMention:Boolean = false;
@@ -23,17 +29,26 @@ package com.dborisenko.api.twitter.net
 			this.isMention = isMentions;
 		}
 	
+		/**
+		 * 
+		 * Collection of Twitter Statuses, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function get statuses():StatusesCollection
 		{
 			return data as StatusesCollection;
 		}
-		
 		public function set statuses(value:StatusesCollection):void
 		{
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var xml:XML = getXML();

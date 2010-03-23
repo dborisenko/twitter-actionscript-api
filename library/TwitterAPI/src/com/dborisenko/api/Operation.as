@@ -12,6 +12,11 @@ package com.dborisenko.api
     
     import mx.rpc.IResponder;
     
+	/**
+	 * Base Operation class.
+	 * @author Denis Borisenko
+	 * 
+	 */
     public class Operation extends EventDispatcher implements IResponder, IOperation
     {
         public function execute():void {}

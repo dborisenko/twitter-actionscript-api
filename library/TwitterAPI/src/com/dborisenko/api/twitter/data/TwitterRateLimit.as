@@ -9,6 +9,11 @@ package com.dborisenko.api.twitter.data
 {
 	import com.dborisenko.api.vo.ValueObject;
 
+	/**
+	 * Twitter Rate Limit
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterRateLimit extends ValueObject
 	{
 		public var remainingHits:int;

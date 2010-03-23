@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.favorite
 	 */
 	public class CreateFavorite extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/favorites/create/{id}.xml";
 		
 		/**

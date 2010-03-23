@@ -18,6 +18,9 @@ package com.dborisenko.api.twitter.commands.timeline
 	 */
 	public class LoadMentions extends StatusesOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/mentions.xml";
 		
 		/**

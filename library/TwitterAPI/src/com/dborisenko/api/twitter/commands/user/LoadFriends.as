@@ -23,6 +23,9 @@ package com.dborisenko.api.twitter.commands.user
 	 */
 	public class LoadFriends extends UsersOperation implements IPagingOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/friends.xml";
 		
 		/**
@@ -52,6 +55,14 @@ package com.dborisenko.api.twitter.commands.user
 			parameters = {id: id, user_id: userId, screen_name: screenName, cursor: cursor};
 		}
 		
+		/**
+		 * Optional. Breaks the results into pages. A single page contains 100 users. 
+		 * This is recommended for users who are following many users. Provide a value of  -1 
+		 * to begin paging. Provide values as returned to in the response body's next_cursor 
+		 * and previous_cursor attributes to page back and forth in the list.
+		 * Example: cursor=-1 or cursor=1300794057949944903
+		 * 
+		 */		
 		public function get cursor():String
 		{
 			return parameters["cursor"];

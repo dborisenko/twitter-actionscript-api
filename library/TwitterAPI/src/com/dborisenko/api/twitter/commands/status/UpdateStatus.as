@@ -20,6 +20,9 @@ package com.dborisenko.api.twitter.commands.status
 	 */
 	public class UpdateStatus extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/update.xml";
 		
 		/**

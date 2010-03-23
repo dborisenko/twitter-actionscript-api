@@ -22,6 +22,9 @@ package com.dborisenko.api.twitter.commands.friendship
 	 */
 	public class CreateFriendships extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/friendships/create/{id}.xml";
 		
 		/**

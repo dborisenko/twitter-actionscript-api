@@ -25,14 +25,33 @@ package com.dborisenko.api.twitter.net
 	use namespace twitter_internal;
 	
 	[Event(name="complete",type="com.dborisenko.api.twitter.events.TwitterEvent")]
+	/**
+	 * 
+	 * Base operation for all Twitter operations
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterOperation extends HttpOperation implements ITwitterOperation
 	{
+		/**
+		 * Twitter API instance.
+		 */
 		protected var twitterAPI:TwitterAPI;
 		
+		/**
+		 * Data, received by the operation.
+		 */
 		[Bindable]
 		public var data:Object;
 		
+		/**
+		 * @private
+		 */		
 		protected var _requiresAuthentication:Boolean = true;
+		
+		/**
+		 * @private
+		 */	
 		protected var _apiRateLimited:Boolean = true;
 		
 		public function TwitterOperation(url:String, requiresAuthentication:Boolean = true, params:Object=null, 
@@ -42,27 +61,51 @@ package com.dborisenko.api.twitter.net
 			this._requiresAuthentication = requiresAuthentication;
 		}
 		
+		/**
+		 * 
+		 * Is operation requests authentication. 
+		 * 
+		 */
 		public function get requiresAuthentication():Boolean
 		{
 			return _requiresAuthentication;
 		}
 		
+		/**
+		 * 
+		 * Is operation rate limited.
+		 * 
+		 */
 		public function get apiRateLimited():Boolean
 		{
 			return _apiRateLimited;
 		}
 		
+		/**
+		 * Execute the operation.
+		 * 
+		 */		
 		override public function execute() : void
 		{
 			initOperation();
 			super.execute();
 		}
 		
+		/**
+		 * 
+		 * Dispatch <code>TwitterEvent.COMPLETE</code> event with <code>success==true</code>. Use only if the result is correct.
+		 * 
+		 */
 		override public function result(data:Object) : void
 		{
 			dispatchEvent(new TwitterEvent(TwitterEvent.COMPLETE, data, true));
 		}
 		
+		/**
+		 * 
+		 * Dispatch <code>TwitterEvent.COMPLETE</code> event with <code>success==false</code>. Use only if operation is fault.
+		 * 
+		 */
 		override public function fault(info:Object) : void
 		{
 			var faultString:String;
@@ -81,11 +124,18 @@ package com.dborisenko.api.twitter.net
 			dispatchEvent(new TwitterEvent(TwitterEvent.COMPLETE, faultString, false));
 		}
 		
+		/**
+		 * @private
+		 */
 		twitter_internal function setTwitterAPI(api:TwitterAPI):void
 		{
 			twitterAPI = api;
 		}
 		
+		/**
+		 * Initialize the operation.
+		 * 
+		 */
 		protected function initOperation():void
 		{
 			if (requiresAuthentication && twitterAPI.connection != null)
@@ -128,6 +178,14 @@ package com.dborisenko.api.twitter.net
 			}
 		}
 		
+		/**
+		 * Convert <code>params</code> to the correct parameters object.
+		 * The value is ignoreg if
+		 * <ul>
+		 * 	<li>value is <code>String</code> and equals <code>null</code></li>
+		 * 	<li>value is <code>int</code> and equals <code>-1</code>
+		 * </ul>
+		 */
 		protected static function convertToParameters(params:Object):Object
 		{
 			var result:Object = {};
@@ -142,6 +200,11 @@ package com.dborisenko.api.twitter.net
 			return result;
 		}
 		
+		/**
+		 * 
+		 * Parameters of the operation in correct format.
+		 * 
+		 */
 		protected function set parameters(value:Object):void
 		{
 			params = convertToParameters(value);
@@ -151,6 +214,9 @@ package com.dborisenko.api.twitter.net
 			return params;
 		}
 		
+		/**
+		 * @return Screen Name, if the <code>recepient</code> is Twitter User.
+		 */
 		protected static function getScreenName(recipient:Object):String
 		{
 			var screenName:String;
@@ -161,6 +227,9 @@ package com.dborisenko.api.twitter.net
 			return screenName;
 		}
 		
+		/**
+		 * Event handler of the result of the operation.
+		 */
 		override protected function handleResult(event:Event):void
 		{
 			if (resultFormat == ResultFormat.XML)
@@ -180,6 +249,10 @@ package com.dborisenko.api.twitter.net
 				result(data);
 			}
 		}
+		
+		/**
+		 * Event handler of the fault of the operation.
+		 */
 		override protected function handleFault(event:Event):void
 		{
 			if (event is ErrorEvent)

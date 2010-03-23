@@ -11,6 +11,12 @@ package com.dborisenko.api.twitter.net
 	
 	import flash.events.Event;
 	
+	/**
+	 * 
+	 * Base operation for work with Twitter Status
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class StatusOperation extends TwitterOperation
 	{
 		public function StatusOperation(url:String, requiresAuthentication:Boolean=true, 
@@ -19,17 +25,26 @@ package com.dborisenko.api.twitter.net
 			super(url, requiresAuthentication, params);
 		}
 		
+		/**
+		 * 
+		 * Twitter Status, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function get status():TwitterStatus
 		{
 			return data as TwitterStatus;
 		}
-		
 		public function set status(value:TwitterStatus):void
 		{
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var xml:XML = getXML();

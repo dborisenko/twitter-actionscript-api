@@ -14,6 +14,11 @@ package com.dborisenko.api.twitter.utils.loaders.memorizeLoaders
 	
 	import mx.collections.ArrayCollection;
 	
+	/**
+	 * List Statuses Loader class.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class ListStatusesLoader extends MemorizeLoader
 	{
 		protected var user:String;

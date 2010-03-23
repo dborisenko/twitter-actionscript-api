@@ -21,6 +21,9 @@ package com.dborisenko.api.twitter.commands.timeline
 	 */
 	public class LoadFriendsTimeline extends StatusesOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/friends_timeline.xml";
 		
 		/**

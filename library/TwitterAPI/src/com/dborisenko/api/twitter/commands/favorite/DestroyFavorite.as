@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.favorite
 	 */
 	public class DestroyFavorite extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/favorites/destroy/{id}.xml";
 		
 		/**

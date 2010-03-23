@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.listMembers
 	 */
 	public class AddListMember extends ListOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/{user}/{list_id}/members.xml";
 		
 		/**

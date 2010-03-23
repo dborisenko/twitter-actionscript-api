@@ -11,6 +11,12 @@ package com.dborisenko.api.twitter.data.collections
 	
 	import mx.collections.ArrayCollection;
 	
+	/**
+	 * Collection of Twitter Lists. Can be broken into pages. In this case, <code>nextCursor</code> and <code>previousCursor</code> -
+	 * cursors of next and previous pages.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class ListsCollection extends ArrayCollection implements IPagingCollection
 	{
 		private var _nextCursor:String;
@@ -21,6 +27,11 @@ package com.dborisenko.api.twitter.data.collections
 			super(source);
 		}
 
+		/**
+		 * 
+		 * Cursor of the next page.
+		 * 
+		 */
 		public function get previousCursor():String
 		{
 			return _previousCursor;
@@ -30,6 +41,11 @@ package com.dborisenko.api.twitter.data.collections
 			_previousCursor = value;
 		}
 
+		/**
+		 * 
+		 * Cursor of the previous page.
+		 * 
+		 */
 		public function get nextCursor():String
 		{
 			return _nextCursor;

@@ -20,6 +20,9 @@ package com.dborisenko.api.twitter.commands.friendship
 	 */
 	public class DestroyFriendships extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/friendships/destroy/{id}.xml";
 		
 		/**

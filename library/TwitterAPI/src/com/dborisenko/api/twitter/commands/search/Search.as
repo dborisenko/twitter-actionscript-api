@@ -17,6 +17,9 @@ package com.dborisenko.api.twitter.commands.search
 	 */
 	public class Search extends SearchOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://search.twitter.com/search.json";
 		
 		/**

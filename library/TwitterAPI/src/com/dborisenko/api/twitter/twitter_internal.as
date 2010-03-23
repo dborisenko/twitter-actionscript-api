@@ -7,5 +7,8 @@
  */
 package com.dborisenko.api.twitter
 {
+	/**
+	 * Internal namespace of Twitter API.
+	 */
 	public namespace twitter_internal = "http://dborisenko.com/api/twitter/";
 }

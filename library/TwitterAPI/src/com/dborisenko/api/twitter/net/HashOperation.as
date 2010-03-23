@@ -12,6 +12,12 @@ package com.dborisenko.api.twitter.net
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 
+	/**
+	 * 
+	 * Base operation for work with Twitter Hash results
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class HashOperation extends TwitterOperation
 	{
 		public function HashOperation(url:String, requiresAuthentication:Boolean=true, 
@@ -20,17 +26,26 @@ package com.dborisenko.api.twitter.net
 			super(url, requiresAuthentication, params, resultFormat);
 		}
 		
+		/**
+		 * 
+		 * Hash dictionary, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function get hash():Dictionary
 		{
 			return data as Dictionary;
 		}
-		
 		public function set hash(value:Dictionary):void
 		{
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
 		{
 			if (!data)
@@ -40,6 +55,10 @@ package com.dborisenko.api.twitter.net
 			super.handleResult(event);
 		}
 		
+		/**
+		 * Parser for the hash dictionary
+		 * 
+		 */
 		protected function parseHash(xml:XML):Dictionary
 		{
 			var result:Dictionary;

@@ -18,6 +18,9 @@ package com.dborisenko.api.twitter.commands.list
 	 */
 	public class ShowList extends ListOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/{user}/lists/{id}.xml";
 		
 		/**

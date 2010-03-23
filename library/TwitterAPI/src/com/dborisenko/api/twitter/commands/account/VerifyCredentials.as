@@ -20,6 +20,9 @@ package com.dborisenko.api.twitter.commands.account
 	 */
 	public class VerifyCredentials extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/account/verify_credentials.xml";
 		
 		public function VerifyCredentials()

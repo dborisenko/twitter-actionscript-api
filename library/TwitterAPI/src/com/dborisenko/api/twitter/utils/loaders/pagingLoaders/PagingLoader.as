@@ -28,6 +28,11 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	[Event(name="result", type="mx.rpc.events.ResultEvent")]
 	[Event(name="progress", type="flash.events.ProgressEvent")]
 	[Event(name="statusChange", type="com.dborisenko.api.events.StatusEvent")]
+	/**
+	 * Multipage Loader class.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class PagingLoader extends EventDispatcher
 	{
 		protected static const START_CURSOR:String = "-1";

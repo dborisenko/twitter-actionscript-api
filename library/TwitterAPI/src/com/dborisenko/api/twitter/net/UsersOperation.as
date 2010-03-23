@@ -14,6 +14,12 @@ package com.dborisenko.api.twitter.net
 	
 	import mx.collections.ArrayCollection;
 
+	/**
+	 * 
+	 * Base operation for work with Collection of Twitter Users
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class UsersOperation extends TwitterOperation
 	{
 		private var followers:Boolean;
@@ -27,17 +33,26 @@ package com.dborisenko.api.twitter.net
 			this.blocked = blocked;
 		}
 		
+		/**
+		 * 
+		 * Collection of Twitter Users, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function set users(value:ArrayCollection):void
 		{
 			data = value;
 		}
-		
 		public function get users():ArrayCollection
 		{
 			return data as ArrayCollection;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var xml:XML = getXML();

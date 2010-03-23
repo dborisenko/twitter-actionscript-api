@@ -18,6 +18,9 @@ package com.dborisenko.api.twitter.commands.listSubscribers
 	 */
 	public class SubscribeList extends ListOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/{user}/{list_id}/subscribers.xml";
 		
 		/**

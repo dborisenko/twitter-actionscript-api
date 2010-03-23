@@ -11,6 +11,12 @@ package com.dborisenko.api.twitter.net
 	
 	import flash.events.Event;
 
+	/**
+	 * 
+	 * Base operation for work with Twitter Direct Message
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class DirectMessageOperation extends TwitterOperation
 	{
 		private var isSent:Boolean = true;
@@ -23,17 +29,26 @@ package com.dborisenko.api.twitter.net
 			this.isSent = isSent;
 		}
 		
+		/**
+		 * 
+		 * Twitter Direct Message, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function get directMessage():TwitterDirectMessage
 		{
 			return data as TwitterDirectMessage;
 		}
-		
 		public function set directMessage(value:TwitterDirectMessage):void
 		{
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var xml:XML = getXML();

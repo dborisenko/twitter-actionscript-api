@@ -9,6 +9,11 @@ package com.dborisenko.api.twitter.data.collections
 {
 	import mx.collections.ArrayCollection;
 
+	/**
+	 * Collection of Twitter Direct Messages
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class DirectMessagesCollection extends ArrayCollection
 	{
 		public function DirectMessagesCollection(source:Array=null)

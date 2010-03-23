@@ -15,6 +15,12 @@ package com.dborisenko.api.twitter.net
 	
 	import mx.collections.ArrayCollection;
 
+	/**
+	 * 
+	 * Base operation for work with Twitter Search
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class SearchOperation extends TwitterOperation
 	{
 		public function SearchOperation(url:String)
@@ -22,6 +28,11 @@ package com.dborisenko.api.twitter.net
 			super(url, false, params, ResultFormat.JSON);
 		}
 		
+		/**
+		 * 
+		 * Twitter Search result, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function get searchData():TwitterSearch
 		{
@@ -32,6 +43,11 @@ package com.dborisenko.api.twitter.net
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var json:Object = getJSON();

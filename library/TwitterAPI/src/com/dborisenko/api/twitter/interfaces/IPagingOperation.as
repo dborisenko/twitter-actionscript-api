@@ -9,8 +9,18 @@ package com.dborisenko.api.twitter.interfaces
 {
 	import com.dborisenko.api.interfaces.IOperation;
 
+	/**
+	 * Interface for the multipage collection operations.
+	 * @author Denis Borisenko
+	 * 
+	 */	
 	public interface IPagingOperation extends IOperation
 	{
+		/**
+		 * 
+		 * Cursor of the current page. 
+		 * 
+		 */		
 		function get cursor():String;
 		function set cursor(value:String):void;
 	}

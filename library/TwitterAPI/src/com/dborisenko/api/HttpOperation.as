@@ -19,6 +19,11 @@ package com.dborisenko.api
     import mx.rpc.events.FaultEvent;
     import mx.rpc.events.ResultEvent;
     
+	/**
+	 * Base HTTP Operation class
+	 * @author Denis Borisenko
+	 * 
+	 */
     public class HttpOperation extends Operation
     {
 		public static const METHOD_GET			:String 	= "GET";

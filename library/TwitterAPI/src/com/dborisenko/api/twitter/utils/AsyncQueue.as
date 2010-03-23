@@ -16,6 +16,11 @@ package com.dborisenko.api.twitter.utils
 	import mx.collections.ArrayCollection;
 	import mx.collections.Sort;
 
+	/**
+	 * Async queue class.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class AsyncQueue
 	{
 		protected var operationsQueue:ArrayCollection;

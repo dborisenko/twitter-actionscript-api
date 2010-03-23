@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.favorite
 	 */
 	public class LoadFavorites extends StatusesOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/favorites.xml";
 		
 		/**

@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.list
 	 */
 	public class LoadListStatuses extends StatusesOperation implements ISinceIdOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/{user}/lists/{list_id}/statuses.xml";
 		
 		/**
@@ -50,6 +53,12 @@ package com.dborisenko.api.twitter.commands.list
 			parameters = {since_id: sinceId, max_id: maxId, per_page: perPage, page: page};
 		}
 		
+		/**
+		 * 
+		 * Optional.  Returns only statuses with an ID greater than (that is, more recent than) the specified ID. 
+		 * 		Example: since_id=12345
+		 * 
+		 */		
 		public function get sinceId():String
 		{
 			return parameters["since_id"];

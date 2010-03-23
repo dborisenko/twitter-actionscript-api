@@ -132,7 +132,7 @@ package com.dborisenko.api.delegates
 		
 		protected function handleFault(event:ErrorEvent):void
 		{
-			var fault:Fault = new Fault(event.errorID.toString(), event.text);
+			var fault:Fault = new Fault(event.text, event.text);
 			dispatchEvent(new FaultEvent(FaultEvent.FAULT, false, true, fault));
 		}
 	}

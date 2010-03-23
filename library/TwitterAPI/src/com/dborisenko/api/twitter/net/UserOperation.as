@@ -11,7 +11,12 @@ package com.dborisenko.api.twitter.net
 	
 	import flash.events.Event;
 	
-	
+	/**
+	 * 
+	 * Base operation for work with Twitter User
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class UserOperation extends TwitterOperation
 	{
 		public function UserOperation(url:String, requiresAuthentication:Boolean=true, params:Object=null)
@@ -19,17 +24,26 @@ package com.dborisenko.api.twitter.net
 			super(url, requiresAuthentication, params);
 		}
 		
+		/**
+		 * 
+		 * Twitter User, received by the operation. 
+		 * 
+		 */
 		[Bindable]
 		public function set user(value:TwitterUser):void
 		{
 			data = value;
 		}
-		
 		public function get user():TwitterUser
 		{
 			return data as TwitterUser;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override protected function handleResult(event:Event) : void
         {
 			var xml:XML = getXML();

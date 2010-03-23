@@ -12,6 +12,11 @@ package com.dborisenko.api.twitter.data
 	
 	[Bindable]
 	[Event(name="dataChange", type="mx.events.FlexEvent")]
+	/**
+	 * Twitter User
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterUser extends ValueObject
 	{
 		public var id:String;

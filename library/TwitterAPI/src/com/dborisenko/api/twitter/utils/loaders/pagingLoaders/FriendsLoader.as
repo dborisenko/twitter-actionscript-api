@@ -13,6 +13,11 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	
 	import mx.collections.ArrayCollection;
 	
+	/**
+	 * Friends Loader class. Loads all the pages of the friends.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class FriendsLoader extends PagingLoader
 	{
 		protected var id:String;

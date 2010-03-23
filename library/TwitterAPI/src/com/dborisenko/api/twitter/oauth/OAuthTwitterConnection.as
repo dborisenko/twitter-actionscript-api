@@ -21,21 +21,53 @@ package com.dborisenko.api.twitter.oauth
 	import org.iotashan.oauth.OAuthSignatureMethod_HMAC_SHA1;
 	import org.iotashan.oauth.OAuthToken;
 	
+	/**
+	 * Error of receiving request token.
+	 * @eventType com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent.REQUEST_TOKEN_ERROR
+	 */
     [Event(name="requestTokenError",type="com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent")]
+	/**
+	 * Request token received.
+	 * @eventType com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent.REQUEST_TOKEN_RECEIVED
+	 */
     [Event(name="requestTokenReceived",type="com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent")]
+	/**
+	 * Error of receiving access token.
+	 * @eventType com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent.ACCESS_TOKEN_ERROR
+	 */
     [Event(name="accessTokenError",type="com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent")]
+	/**
+	 * Authentication successfully complete.
+	 * @eventType com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent.AUTHORIZED
+	 */
     [Event(name="authorized",type="com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent")]
+	/**
+	 * 
+	 * OAuth connection delegate for Twitter service.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class OAuthTwitterConnection extends EventDispatcher
 	{
 		private static const REQUEST_TOKEN_URL:String = "http://twitter.com/oauth/request_token";
 		private static const ACCESS_TOKEN_URL:String = "http://twitter.com/oauth/access_token";
 		private static const AUTHORIZE_URL:String = "http://twitter.com/oauth/authorize";
 		
+		/**
+		 * The OAuthConsumer class is for holding on to the consumer's key and private strings.
+		 */
 		public var consumer:OAuthConsumer = new OAuthConsumer();
-		private var signatureMethod:OAuthSignatureMethod_HMAC_SHA1 = new OAuthSignatureMethod_HMAC_SHA1();
+		/**
+		 * The OAuthToken class is for holding on to a Request Token key and private strings.
+		 */
 		public var requestToken:OAuthToken = new OAuthToken();
+		/**
+		 * The OAuthToken class is for holding on to an Access Token key and private strings.
+		 */
 		public var accessToken:OAuthToken = new OAuthToken();
+		
 		private var _authorized:Boolean = false;
+		private var signatureMethod:OAuthSignatureMethod_HMAC_SHA1 = new OAuthSignatureMethod_HMAC_SHA1();
 		
 		private var userId:String;
 		private var screenName:String;
@@ -45,12 +77,18 @@ package com.dborisenko.api.twitter.oauth
 			super();
 		}
 		
+		/**
+		 * Set consumer's key and private strings.
+		 */
 		public function setConsumer(consumerKey:String, consumerSecret:String):void
 		{
 			consumer.key = consumerKey;
 			consumer.secret = consumerSecret;
 		}
 		
+		/**
+		 * Set Access token key and private strings.
+		 */
 		public function setAccessToken(accessKey:String, accessSecret:String):void
 		{
 			if (_authorized)
@@ -60,6 +98,10 @@ package com.dborisenko.api.twitter.oauth
 			accessToken.secret = accessSecret;
 		}
 		
+		/**
+		 * Authorize using given consumer key and private string.
+		 * Method begins to receive Request Token.
+		 */
 		public function authorize(consumerKey:String, consumerSecret:String):void
 		{
 			if (_authorized)
@@ -70,6 +112,11 @@ package com.dborisenko.api.twitter.oauth
 			getRequestToken();
 		}
 		
+		/**
+		 * 
+		 * @return OAuth authentication authorize URL.
+		 * 
+		 */		
 		public function get authorizeURL():String
 		{
 			if (requestToken.key == null || requestToken.key == "")
@@ -78,11 +125,17 @@ package com.dborisenko.api.twitter.oauth
 			return AUTHORIZE_URL + "?oauth_token=" + requestToken.key;
 		}
 		
+		/**
+		 * Is connection authorized.
+		 */
 		public function get authorized():Boolean
 		{
 			return _authorized;
 		}
 		
+		/**
+		 * Grand access using given pin.
+		 */
 		public function grantAccess(pin:String):void
 		{
 			if (_authorized)
@@ -91,6 +144,9 @@ package com.dborisenko.api.twitter.oauth
 			getAccessToken(pin);
 		}
 		
+		/**
+		 * Start receiving Request Token
+		 */
 		private function getRequestToken():void
 		{
 			if (_authorized)
@@ -188,6 +244,9 @@ package com.dborisenko.api.twitter.oauth
 			dispatchEvent(new OAuthTwitterEvent(OAuthTwitterEvent.ACCESS_TOKEN_ERROR, event.fault.message));
 		}
 		
+		/**
+		 * Create OAuth header using given parameters.
+		 */
 		public function createOAuthHeader(method:String, url:String, params:Object=null):URLRequestHeader
 		{
 			var oauthRequest:OAuthRequest = new OAuthRequest(method, url, params, consumer, accessToken);

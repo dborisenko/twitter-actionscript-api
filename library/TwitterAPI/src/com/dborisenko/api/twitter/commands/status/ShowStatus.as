@@ -18,6 +18,9 @@ package com.dborisenko.api.twitter.commands.status
 	 */
 	public class ShowStatus extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/show/{id}.xml";
 		
 		/**

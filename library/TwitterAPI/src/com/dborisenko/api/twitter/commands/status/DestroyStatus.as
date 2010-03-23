@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.status
 	 */
 	public class DestroyStatus extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/statuses/destroy/{id}.xml";
 		
 		/**

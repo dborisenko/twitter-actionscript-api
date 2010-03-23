@@ -10,6 +10,11 @@ package com.dborisenko.api.twitter.data
 	import com.dborisenko.api.vo.ValueObject;
 
 	[Bindable]
+	/**
+	 * Twitter Direct message
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterDirectMessage extends ValueObject
 	{
 		public var createdAt:Date;

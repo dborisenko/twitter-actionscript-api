@@ -7,6 +7,11 @@
  */
 package com.dborisenko.api.twitter.interfaces
 {
+	/**
+	 * Interface with sinceId value.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public interface ISinceIdOperation
 	{
 		function get sinceId():String;

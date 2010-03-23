@@ -10,6 +10,11 @@ package com.dborisenko.api.twitter.data
 	import com.dborisenko.api.vo.ValueObject;
 
 	[Bindable]
+	/**
+	 * Twitter Status
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterStatus extends ValueObject
 	{
 		public var createdAt:Date;

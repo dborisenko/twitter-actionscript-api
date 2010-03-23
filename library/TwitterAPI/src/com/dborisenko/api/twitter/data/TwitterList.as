@@ -13,6 +13,11 @@ package com.dborisenko.api.twitter.data
 
 	[Bindable]
 	[Event(name="dataChange", type="mx.events.FlexEvent")]
+	/**
+	 * Twitter List
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class TwitterList extends ValueObject
 	{
 		public static const MODE_PRIVATE:String = "private";

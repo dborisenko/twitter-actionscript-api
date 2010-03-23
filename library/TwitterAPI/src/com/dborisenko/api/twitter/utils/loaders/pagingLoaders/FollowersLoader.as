@@ -13,6 +13,11 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	
 	import mx.collections.ArrayCollection;
 	
+	/**
+	 * Followers Loader class. Loads all the pages of the followers.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class FollowersLoader extends PagingLoader
 	{
 		protected var id:String;

@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.block
 	 */
 	public class DestroyBlock extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/blocks/destroy/{id}.xml";
 		
 		/**

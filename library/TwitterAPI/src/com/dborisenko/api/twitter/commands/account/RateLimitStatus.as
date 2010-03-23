@@ -28,6 +28,9 @@ package com.dborisenko.api.twitter.commands.account
 	 */
 	public class RateLimitStatus extends HashOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/account/rate_limit_status.xml";
 		
 		public function RateLimitStatus()
@@ -48,6 +51,11 @@ package com.dborisenko.api.twitter.commands.account
 			data = value;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */		
 		override protected function handleResult(event:Event) : void
 		{
 			var hash:Dictionary = parseHash(getXML());

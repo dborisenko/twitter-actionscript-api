@@ -9,6 +9,11 @@ package com.dborisenko.api.twitter.data.collections
 {
 	import mx.collections.ArrayCollection;
 
+	/**
+	 * Collection of Twitter Statuses
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class StatusesCollection extends ArrayCollection
 	{
 		public function StatusesCollection(source:Array=null)

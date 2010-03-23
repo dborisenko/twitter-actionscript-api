@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.status
 	 */
 	public class Retweet extends StatusOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/statuses/retweet/{id}.xml";
 		
 		/**

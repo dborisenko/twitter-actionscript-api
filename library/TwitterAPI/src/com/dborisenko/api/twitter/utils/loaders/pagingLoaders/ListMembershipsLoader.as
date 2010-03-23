@@ -13,6 +13,11 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	
 	import mx.collections.ArrayCollection;
 	
+	/**
+	 * List Memberships Loader class. Loads all the pages of the list memberships.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class ListMembershipsLoader extends PagingLoader
 	{
 		protected var user:String;

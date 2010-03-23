@@ -22,6 +22,9 @@ package com.dborisenko.api.twitter.commands.block
 	 */
 	public class CreateBlock extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/blocks/create/{id}.xml";
 		
 		/**

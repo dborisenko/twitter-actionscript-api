@@ -18,6 +18,9 @@ package com.dborisenko.api.twitter.commands.block
 	 */
 	public class LoadBlockedUsers extends UsersOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/blocks/blocking.xml";
 		
 		/**

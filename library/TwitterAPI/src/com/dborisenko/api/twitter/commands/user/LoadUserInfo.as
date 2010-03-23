@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.user
 	 */
 	public class LoadUserInfo extends UserOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/users/show.xml";
 		
 		/**

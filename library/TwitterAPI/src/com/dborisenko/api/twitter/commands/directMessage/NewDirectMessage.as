@@ -20,6 +20,9 @@ package com.dborisenko.api.twitter.commands.directMessage
 	 */
 	public class NewDirectMessage extends DirectMessageOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/direct_messages/new.xml";
 		
 		/**

@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.list
 	 */
 	public class LoadListMemberships extends ListsOperation implements IPagingOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/{user}/lists/memberships.xml";
 		
 		/**
@@ -40,6 +43,15 @@ package com.dborisenko.api.twitter.commands.list
 			parameters = {cursor: cursor};
 		}
 		
+		/**
+		 * 
+		 * Optional. Breaks the results into pages. A single page contains 20 lists. 
+		 * Provide a value of -1 to begin paging. Provide values as returned to in the response 
+		 * body's next_cursor and previous_cursor attributes to page back and forth in the list.
+		 * 		Example: cursor=-1
+		 * 		Example: cursor=-1300794057949944903
+		 * 
+		 */
 		public function get cursor():String
 		{
 			return parameters["cursor"];

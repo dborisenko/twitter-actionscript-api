@@ -17,6 +17,11 @@ package com.dborisenko.api.twitter.utils.loaders.memorizeLoaders
 	import mx.collections.ArrayCollection;
 	
 	[Event(name="complete", type="com.dborisenko.api.twitter.events.TwitterEvent")]
+	/**
+	 * Memorize Loader class.
+	 * @author Denis Borisenko
+	 * 
+	 */
 	public class MemorizeLoader extends EventDispatcher
 	{
 		protected var locked:Boolean = false;

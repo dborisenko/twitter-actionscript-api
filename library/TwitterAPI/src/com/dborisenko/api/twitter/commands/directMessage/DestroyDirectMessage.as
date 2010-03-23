@@ -19,6 +19,9 @@ package com.dborisenko.api.twitter.commands.directMessage
 	 */
 	public class DestroyDirectMessage extends DirectMessageOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://twitter.com/direct_messages/destroy/{id}.xml";
 		
 		/**

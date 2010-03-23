@@ -22,6 +22,9 @@ package com.dborisenko.api.twitter.commands.user
 	 */
 	public class SearchUsers extends UsersOperation
 	{
+		/**
+		 * @private
+		 */
 		protected static const URL:String = "http://api.twitter.com/1/users/search.xml";
 		
 		/**
