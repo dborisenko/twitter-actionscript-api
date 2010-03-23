@@ -2,7 +2,7 @@
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
 						width="800" height="500"
 						verticalScrollPolicy="off" horizontalScrollPolicy="off"
-						creationComplete="windowedapplication1_creationCompleteHandler(event)">
+						creationComplete="windowedapplication1_creationCompleteHandler(event)" viewSourceURL="srcview/index.html">
 	<mx:Script>
 		<![CDATA[
 			import com.dborisenko.api.twitter.TwitterAPI;
