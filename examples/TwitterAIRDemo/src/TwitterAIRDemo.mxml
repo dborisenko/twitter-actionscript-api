@@ -120,18 +120,19 @@
 		<mx:VBox label="View 1" width="100%" height="100%"
 				 verticalScrollPolicy="off" horizontalScrollPolicy="off" 
 				 id="authScreen">
+			<mx:TextInput text="{authHTML.location}" editable="false" width="100%"/>
 			<mx:HTML id="authHTML" width="100%" height="100%"/>
 			<mx:HBox width="100%" horizontalAlign="center" verticalAlign="middle"
 					 verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:Label text="Enter pin here:"/>
 				<mx:TextInput id="pinTextInput"/>
-				<mx:Button label="Ok" click="button1_clickHandler(event)"/>
+				<mx:Button label="Ok" click="button1_clickHandler(event)" id="pinOkButton"/>
 			</mx:HBox>
 		</mx:VBox>
 		<mx:VBox label="" width="100%" height="100%"
 				 verticalScrollPolicy="off" horizontalScrollPolicy="off"
 				 id="twitterScreen">
-			<mx:List width="100%" height="100%" dataProvider="{twitterStatuses}">
+			<mx:List width="100%" height="100%" dataProvider="{twitterStatuses}" id="tweetsList">
 				<mx:itemRenderer>
 					<mx:Component>
 						<mx:HBox width="100%" height="100" borderStyle="solid"
@@ -150,8 +151,10 @@
 			<mx:HBox width="100%" horizontalAlign="center" verticalAlign="middle"
 					 verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:TextArea width="100%" height="100%" id="tweetTextInput"/>
-				<mx:Button label="Send" click="button2_clickHandler(event)" enabled="{tweetTextInput.text != ''}"
-						   height="100%"/>
+				<mx:Button label="Send" click="button2_clickHandler(event)" 
+						   enabled="{tweetTextInput.text != ''}"
+						   height="100%"
+						   id="sendTweetButton"/>
 			</mx:HBox>
 		</mx:VBox>
 	</mx:ViewStack>
