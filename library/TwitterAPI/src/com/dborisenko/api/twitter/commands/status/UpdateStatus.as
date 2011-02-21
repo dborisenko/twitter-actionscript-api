@@ -42,6 +42,11 @@ package com.dborisenko.api.twitter.commands.status
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
+			
+			statusText = statusText.replace(/\r\n/g, " ");
+			statusText = statusText.replace(/\n/g, " ");
+			statusText = statusText.replace(/\r/g, " ");
+			
 			parameters = {status: statusText, in_reply_to_status_id: inReplyToStatusId};
 		}
 	}
