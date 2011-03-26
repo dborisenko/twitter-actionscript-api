@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="800" 
+					   height="500"
+					   creationComplete="windowedapplication1_creationCompleteHandler(event)" xmlns:local="*"
+					   >
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="loggedIn"/>
+	</s:states>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/halo";
+		
+		s|List#tweetsList s|Scroller {
+			horizontalScrollPolicy: off;
+		}
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.dborisenko.api.twitter.TwitterAPI;
+			import com.dborisenko.api.twitter.commands.status.UpdateStatus;
+			import com.dborisenko.api.twitter.commands.timeline.LoadHomeTimeline;
+			import com.dborisenko.api.twitter.events.TwitterEvent;
+			import com.dborisenko.api.twitter.net.TwitterOperation;
+			import com.dborisenko.api.twitter.oauth.events.OAuthTwitterEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			protected static const CONSUMER_KEY:String = "3jetSG8TzkMaPiTGEBILvQ";
+			protected static const CONSUMER_SECRET:String = "lITX9DWs4QpLVOsvRqz1vcHgWX8XZVhMDOgI4LsshfU";
+			
+			[Bindable]
+			protected var twitterApi:TwitterAPI = new TwitterAPI();
+			
+			[Bindable]
+			protected var twitterStatuses:ArrayCollection;
+			
+			protected function loadTweets():void
+			{
+				status = "Loading tweets";
+				var op:TwitterOperation = new LoadHomeTimeline();
+				var handler:Function = function (event:TwitterEvent):void
+				{
+					op.removeEventListener(TwitterEvent.COMPLETE, handler);
+					if (event.success)
+					{
+						status = "Tweets loaded";
+						twitterStatuses = event.data as ArrayCollection;
+					}
+					else
+					{
+						status = "Loading error: " + event.data.toString();
+					}
+				};
+				op.addEventListener(TwitterEvent.COMPLETE, handler);
+				twitterApi.post(op);
+			}
+			
+			protected function sendTweet():void
+			{
+				var text:String = tweetTextInput.text;
+				status = "Sending tweet";
+				
+				var op:TwitterOperation = new UpdateStatus(text);
+				var handler:Function = function (event:TwitterEvent):void
+				{
+					op.removeEventListener(TwitterEvent.COMPLETE, handler);
+					if (event.success)
+					{
+						status = "Tweet sent";
+						loadTweets();
+						tweetTextInput.text = "";
+					}
+					else
+					{
+						status = "Error of status sending: " + event.data.toString();
+					}
+				};
+				op.addEventListener(TwitterEvent.COMPLETE, handler);
+				twitterApi.post(op);
+			}
+			
+			protected function windowedapplication1_creationCompleteHandler(event:FlexEvent):void
+			{
+				twitterApi.connection.addEventListener(OAuthTwitterEvent.REQUEST_TOKEN_RECEIVED, handleRequestTokenReceived);
+				twitterApi.connection.addEventListener(OAuthTwitterEvent.REQUEST_TOKEN_ERROR, handleRequestTokenError);
+				twitterApi.connection.addEventListener(OAuthTwitterEvent.ACCESS_TOKEN_ERROR, handleAccessTokenError);
+				twitterApi.connection.addEventListener(OAuthTwitterEvent.AUTHORIZED, handleAuthorized);
+				
+				twitterApi.connection.authorize(CONSUMER_KEY, CONSUMER_SECRET);
+			}
+			
+			protected function tweetTextInput_textInputHandler(event:TextEvent):void
+			{
+				if (event.text == "\n")
+				{
+					event.preventDefault();
+					sendTweet();
+				}
+			}
+			
+			protected function sendTweetButton_clickHandler(event:MouseEvent):void
+			{
+				sendTweet();
+			}
+			
+			protected function pinOkButton_clickHandler(event:MouseEvent):void
+			{
+				twitterApi.connection.grantAccess(pinTextInput.text);
+			}
+			
+			protected function handleRequestTokenReceived(event:OAuthTwitterEvent):void
+			{
+				authHTML.url = twitterApi.connection.authorizeURL;
+			}
+			
+			protected function handleRequestTokenError(event:OAuthTwitterEvent):void
+			{
+				status = "Connection error";
+			}
+			
+			protected function handleAccessTokenError(event:OAuthTwitterEvent):void
+			{
+				status = "Error of receiving access token";
+			}
+			
+			protected function handleAuthorized(event:OAuthTwitterEvent):void
+			{
+				status = "Authorized";
+				currentState = "loggedIn";
+				loadTweets();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Group id="viewstack" 
+			 width="100%" 
+			 height="100%">
+		
+		<s:VGroup width="100%" 
+				  height="100%" 
+				  id="authScreen" 
+				  excludeFrom="loggedIn">
+			<s:TextInput text="{authHTML.location}" 
+						 editable="false" 
+						 width="100%"/>
+
+			<local:StageWebViewUIComponent id="authHTML"
+										   width="100%" 
+										   height="100%"
+										   />
+			
+			<s:HGroup width="100%" 
+					  horizontalAlign="center" 
+					  verticalAlign="middle"
+					  >
+				
+				<s:Label text="Enter pin here:"/>
+				<s:TextInput id="pinTextInput"/>
+				<s:Button label="Ok" 
+						  click="pinOkButton_clickHandler(event)" 
+						  id="pinOkButton"/>
+			</s:HGroup>
+		</s:VGroup>
+		
+		<s:VGroup width="100%" 
+				  height="100%" 
+				  id="twitterScreen" 
+				  includeIn="loggedIn">
+			
+			<s:List width="100%" 
+					height="100%" 
+					dataProvider="{twitterStatuses}" 
+					id="tweetsList"
+					itemRenderer="TweetItemRenderer"
+					autoLayout="true"	
+					>
+			</s:List>
+			
+			<s:HGroup width="100%" 
+					  horizontalAlign="center" 
+					  verticalAlign="middle">
+				<s:TextArea width="100%" 
+							height="100%" 
+							id="tweetTextInput" 
+							textInput="tweetTextInput_textInputHandler(event)"/>
+				<s:Button label="Send" 
+						  click="sendTweetButton_clickHandler(event)" 
+						  enabled="{tweetTextInput.text != ''}"
+						  height="100%"
+						  id="sendTweetButton"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+	
+</s:WindowedApplication>
