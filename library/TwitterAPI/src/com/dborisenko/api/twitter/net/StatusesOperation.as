@@ -51,6 +51,8 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
+			//trace(this.serviceDelegate.url);
+			//trace(getResult().toString());
 			var json:Array = getJSON() as Array;
         	statuses = new StatusesCollection();
 	        	

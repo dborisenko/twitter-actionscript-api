@@ -57,6 +57,7 @@ package com.dborisenko.api.twitter.net
 		public function TwitterOperation(url:String, requiresAuthentication:Boolean = true, params:Object=null, 
 										 resultFormat:String=ResultFormat.XML)
 		{
+			
 			super(url, params, resultFormat);
 			this._requiresAuthentication = requiresAuthentication;
 		}
@@ -191,8 +192,12 @@ package com.dborisenko.api.twitter.net
 			var result:Object = {};
 			for (var key:String in params)
 			{
-				if (params[key] is String && params[key] != null ||
-					params[key] is int && params[key] != -1)
+				trace("Parameter: " + key + " Value: " + params[key]);
+				if ( ((params[key] is String) && (params[key] != null)) ||
+					 ((params[key] is int) && (params[key] != -1)) ||
+					 (params[key] is Boolean)
+					
+				   )
 				{
 					result[key] = params[key];
 				}

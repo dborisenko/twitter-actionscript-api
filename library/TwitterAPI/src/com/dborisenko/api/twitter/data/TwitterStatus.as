@@ -145,7 +145,7 @@ package com.dborisenko.api.twitter.data
 					for each(e in status['entities']['user_mentions']){
 						var newMention:TwitterEntity = new TwitterEntity();
 						newMention.parseJSON(e, TwitterEntity.ENTITY_TYPE_MENTION);
-						this.urls.push(newMention);
+						this.userMentions.push(newMention);
 					}	
 				}
 				

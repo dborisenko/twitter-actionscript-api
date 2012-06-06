@@ -21,7 +21,7 @@ package com.dborisenko.api.twitter.data
 		public var mentionId:String; // int also available.
 		public var screenName:String;
 		// general
-		public var indicies:Array;
+		public var indices:Array;
 		//derived
 		public var startIndex:int;
 		public var endIndex:int;
@@ -46,9 +46,10 @@ package com.dborisenko.api.twitter.data
 				screenName = data['screen_name'];
 			}
 			
-			indicies = data['indicies'];
-			startIndex = indicies[0];
-			endIndex = indicies[1];
+			indices = data['indices'];
+			startIndex = indices[0];
+			endIndex = indices[1];
+			this.type = type;
 			
 			
 		}
