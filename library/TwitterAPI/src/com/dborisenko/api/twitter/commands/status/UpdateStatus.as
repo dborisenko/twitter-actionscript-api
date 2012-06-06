@@ -15,15 +15,18 @@ package com.dborisenko.api.twitter.commands.status
 	 * A status update with text identical to the authenticating user's current status will be ignored to prevent 
 	 * duplicates.
 	 * 
+	 * There are other options that are not implemented here yet. Mostly geolocation. There is also an update_with_media
+	 * API method to upload a picture as well.
+	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses%C2%A0update
+	 * @see https://dev.twitter.com/docs/api/1/post/statuses/update
 	 */
 	public class UpdateStatus extends StatusOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/statuses/update.xml";
+		protected static const URL:String = "http://twitter.com/statuses/update.json";
 		
 		/**
 		 * 
@@ -34,11 +37,15 @@ package com.dborisenko.api.twitter.commands.status
 		 * 								references is mentioned within the status text. Therefore, you must include @username, 
 		 * 								where username is the author of the referenced tweet, within the update.
 		 * 
+		 * @param entities              Optional. Whether or not to include an entities object in the response.
+		 * 
+		 * see: https://dev.twitter.com/docs/api/1/post/statuses/update
+		 * 
 		 */
-		public function UpdateStatus(statusText:String, inReplyToStatusId:String=null)
+		public function UpdateStatus(statusText:String, inReplyToStatusId:String = null, entities:Boolean = true)
 		{
+			resultFormat = ResultFormat.JSON;
 			super(URL);
-			resultFormat = ResultFormat.XML;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
@@ -47,7 +54,7 @@ package com.dborisenko.api.twitter.commands.status
 			statusText = statusText.replace(/\n/g, " ");
 			statusText = statusText.replace(/\r/g, " ");
 			
-			parameters = {status: statusText, in_reply_to_status_id: inReplyToStatusId};
+			parameters = {status: statusText, in_reply_to_status_id: inReplyToStatusId, include_entities:entities};
 		}
 	}
 }

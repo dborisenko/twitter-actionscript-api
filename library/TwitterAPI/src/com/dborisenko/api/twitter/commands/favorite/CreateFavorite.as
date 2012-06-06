@@ -15,28 +15,30 @@ package com.dborisenko.api.twitter.commands.favorite
 	 * Returns the favorite status when successful.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-favorites%C2%A0create
+	 * @see https://dev.twitter.com/docs/api/1/post/favorites/create/%3Aid
 	 */
 	public class CreateFavorite extends StatusOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/favorites/create/{id}.xml";
+		protected static const URL:String = "https://api.twitter.com/1/favorites/create/{id}.json";
 		
 		/**
 		 * 
 		 * @param id		Required.  The ID of the status to favorite. 
 		 * 
+		 * @param entities  Optional. Whether or not to return entities with the status.
+		 * 
 		 */
-		public function CreateFavorite(id:String)
+		public function CreateFavorite(id:String, entities:Boolean = true)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {id: id};
+			parameters = {id: id, include_entities:entities};
 		}
 	}
 }

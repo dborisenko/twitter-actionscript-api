@@ -51,18 +51,16 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
-			var xml:XML = getXML();
-        	if (xml.name() == "statuses")
-        	{
-	        	statuses = new StatusesCollection();
+			var json:Array = getJSON() as Array;
+        	statuses = new StatusesCollection();
 	        	
-	            for each (var item:XML in xml.status)
-	        	{
-	        		var status:TwitterStatus = new TwitterStatus(item);
-	        		status.isMention = isMention;
-	        		statuses.addItem(status);
-	        	}
+            for each (var item:Object in json)
+        	{
+        		var status:TwitterStatus = new TwitterStatus(item);
+        		status.isMention = isMention;
+        		statuses.addItem(status);
         	}
+    	
             super.handleResult(event);
         }
 	}

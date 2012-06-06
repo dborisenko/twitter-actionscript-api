@@ -7,8 +7,9 @@
  */
 package com.dborisenko.api.twitter.data
 {
-	import mx.events.FlexEvent;
 	import com.dborisenko.api.vo.ValueObject;
+	
+	import mx.events.FlexEvent;
 	
 	[Bindable]
 	[Event(name="dataChange", type="mx.events.FlexEvent")]
@@ -44,6 +45,17 @@ package com.dborisenko.api.twitter.data
 		public var profileBackgroundImageUrl:String;
 		public var profileBackgroundTile:String;
 		public var status:TwitterStatus;
+		public var profileUseBackgroundImage:Boolean = false;
+		public var defaultProfileImage:Boolean = false;
+		public var isTranslator:Boolean = false;
+		public var followRequestSent:Boolean = false;
+		public var contributorsEnabled:Boolean = false;
+		public var defaultProfile:Boolean = false;
+		public var listedCount:int = 0;
+		public var language:String = "en";
+		public var geoEnabled:Boolean = false;
+		public var verified:Boolean = false;
+		public var showAllInlineMedia:Boolean = false;
 		
 		private var _isFollower:Boolean;
 		private var _isBlocked:Boolean;
@@ -87,7 +99,7 @@ package com.dborisenko.api.twitter.data
 			dispatchDataChangeEvent();
 		}
 		
-		public function TwitterUser(user:Object, isXML:Boolean=true)
+		public function TwitterUser(user:Object, isXML:Boolean = false, isSearch:Boolean = false)
 		{
 			super();
 			
@@ -100,12 +112,77 @@ package com.dborisenko.api.twitter.data
 			}
 			else
 			{
-				parseJSON(user);
+				if(isSearch){
+					parseSearchJSON(user);
+				}else{
+					parseJSON(user);
+				}
 			}
 		
 		}
 		
-		public function parseJSON(user:Object):void
+		public function parseJSON(user:Object):void{
+			if(user == null)
+				return;
+			
+			//why is the order in the API so goofy?
+			this.profileSidebarBorderColor = user['profile_sidebar_border_color'];
+			this.profileBackgroundImageUrl = user['profile_background_image_url'];
+			this.profileSidebarFillColor = user['profile_sidebar_fill_color'];
+			this.profileBackgroundTile = user['profile_background_tile'];
+			this.profileImageUrl = user['profile_image_url'];
+			this.profileUseBackgroundImage = user['profile_use_background_image'];
+			this.profileTextColor = user['profile_text_color'];
+			this.profileLinkColor = user['profile_link_color'];
+			this.profileBackgroundColor = user['profile_background_color'];
+			this.defaultProfileImage = user['default_profile_image'];
+			
+			
+			this.id = user['id_str'];
+			this.name = user['name'];
+			this.screenName = user['screen_name'];
+			this.createdAt = new Date(Date.parse(user['created_at']));
+			this.language = user['lang'];
+			this.description = user['description'];
+			this.isProtected = user['protected'];
+			this.verified = user['verified'];
+			this.url = user['url'];
+			
+			
+			this.friendsCount = user['friends_count'];
+			this.statusesCount = user['statuses_count'];
+			this.listedCount = user['listed_count'];
+			this.followersCount = user['followers_count'];
+			
+			this.geoEnabled = user['geo_enabled'];
+			this.location = user['location'];
+			this.timeZone = user['time_zone'];
+			this.utcOffset = user['utc_offset'];
+			
+			this.isTranslator = user['is_translator'];
+			this.followRequestSent = user['follow_request_sent'];
+			this.contributorsEnabled = user['contributors_enabled'];
+			this.defaultProfile = user['default_profile'];
+			this.favouritesCount = user['favourites_count']; //seriously, they've gone british on us.
+			
+			this.showAllInlineMedia = user['show_all_inline_media'];
+			this.following = user['following'];
+			this.notifications = user['notifications'];
+			
+			
+			if(user['status']){
+				try
+				{
+					status = new TwitterStatus(user.status, this);
+				}
+				catch (e:Error)
+				{
+					status = null;
+				}
+			}
+		}
+		
+		public function parseSearchJSON(user:Object):void
 		{
 			if (user == null)
 				return;

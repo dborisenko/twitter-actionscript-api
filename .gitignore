@@ -1,0 +1,6 @@
+.actionScriptProperties
+.flexLibProperties
+.project
+.settings/
+as3corelib.swc
+library/TwitterAPI/libs/.DS_Store

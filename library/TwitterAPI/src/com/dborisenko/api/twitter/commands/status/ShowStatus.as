@@ -21,7 +21,7 @@ package com.dborisenko.api.twitter.commands.status
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/statuses/show/{id}.xml";
+		protected static const URL:String = "http://api.twitter.com/1/statuses/show/{id}.json";
 		
 		/**
 		 * 
@@ -31,7 +31,7 @@ package com.dborisenko.api.twitter.commands.status
 		public function ShowStatus(id:String)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;

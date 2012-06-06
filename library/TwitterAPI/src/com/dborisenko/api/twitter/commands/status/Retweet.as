@@ -15,14 +15,14 @@ package com.dborisenko.api.twitter.commands.status
 	 * Returns the original tweet with retweet details embedded.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses-retweet
+	 * @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
 	 */
 	public class Retweet extends StatusOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://api.twitter.com/1/statuses/retweet/{id}.xml";
+		protected static const URL:String = "http://api.twitter.com/1/statuses/retweet/{id}.json";
 		
 		/**
 		 * 
@@ -32,7 +32,7 @@ package com.dborisenko.api.twitter.commands.status
 		public function Retweet(id:String)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

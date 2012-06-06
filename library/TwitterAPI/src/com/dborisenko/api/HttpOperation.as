@@ -6,7 +6,6 @@
  */
 package com.dborisenko.api
 {
-    import com.adobe.serialization.json.JSON;
     import com.dborisenko.api.delegates.HTTPServiceDelegate;
     import com.dborisenko.api.delegates.IServiceDelegate;
     import com.dborisenko.api.delegates.URLLoaderDelegate;
@@ -131,10 +130,11 @@ package com.dborisenko.api
 			{
 				try
 				{
-					return JSON.decode(getResult().toString());
+					return JSON.parse(getResult().toString());
 				}
 				catch (error:Error)
 				{
+					trace("HTTPOperation: Error Parsing JSON");
 				}
 			}
 			return null;

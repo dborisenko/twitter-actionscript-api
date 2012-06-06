@@ -15,14 +15,14 @@ package com.dborisenko.api.twitter.commands.status
 	 * The authenticating user must be the author of the specified status.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses%C2%A0destroy
+	 * @see https://dev.twitter.com/docs/api/1/post/statuses/destroy/%3Aid
 	 */
 	public class DestroyStatus extends StatusOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/statuses/destroy/{id}.xml";
+		protected static const URL:String = "http://twitter.com/statuses/destroy/{id}.json";
 		
 		/**
 		 * 
@@ -32,7 +32,7 @@ package com.dborisenko.api.twitter.commands.status
 		public function DestroyStatus(id:String)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

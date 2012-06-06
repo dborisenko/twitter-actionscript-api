@@ -55,33 +55,27 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
-			var xml:XML = getXML();
-        	if (xml.name() == "users")
-        	{
-        		users = new ArrayCollection();
-        		
-        		for each (var item:XML in xml.user)
-	        	{
-	        		var user:TwitterUser = new TwitterUser(item);
-	        		user.isFollower = followers;
-	        		user.isBlocked = blocked;
-	        		users.addItem(user);
-	        	}
-         	}
-         	else if (xml.name() == "users_list")
-         	{
-         		users = new UsersCollection();
-         		UsersCollection(users).nextCursor = xml.next_cursor.toString();
-         		UsersCollection(users).previousCursor = xml.previous_cursor.toString();
-         		
-         		for each (var itemX:XML in xml.users.user)
-	        	{
-	        		var userX:TwitterUser = new TwitterUser(itemX);
-	        		userX.isFollower = followers;
-	        		userX.isBlocked = blocked;
-	        		users.addItem(userX);
-	        	}
-         	}
+			
+			var json:Object = getJSON();
+			var userData:Array = [];
+			if(json is Array){
+				userData = json as Array;
+				users = new ArrayCollection(); //this is a straight list that doesn't have pagination. Like this: https://dev.twitter.com/docs/api/1/get/users/lookup
+			}else if(json['users']){
+				userData = json['users']; // this will be a paginated list of users. Like this: https://dev.twitter.com/docs/api/1/get/blocks/blocking
+				users = new UsersCollection();
+				UsersCollection(users).nextCursor = json['next_cursor_str'];
+				UsersCollection(users).previousCursor = json['previous_cursor_str'];
+			}
+			
+			
+			for each(var item:Object in userData){
+				var user:TwitterUser = new TwitterUser(item);
+				user.isFollower = followers;
+				user.isBlocked = blocked;
+				users.addItem(user);
+			}
+			
          	super.handleResult(event);
         }
 	}

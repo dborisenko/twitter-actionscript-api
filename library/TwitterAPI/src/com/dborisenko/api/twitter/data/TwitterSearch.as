@@ -19,5 +19,9 @@ package com.dborisenko.api.twitter.data
 	{
 		public var results:ArrayCollection;
 		public var query:String;
+		public var maxResultId:String;
+		public var nextPage:String;
+		public var page:int;
+		public var refreshURL:String;
 	}
 }
