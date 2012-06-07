@@ -148,7 +148,7 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 			}
 			else
 			{
-				throw new Error("operationClass must implements IPagingOperation");
+				throw new Error("operationClass must implement IPagingOperation");
 			}
 		}
 		

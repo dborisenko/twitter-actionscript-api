@@ -23,8 +23,10 @@ package com.dborisenko.api.twitter.data
 		public static const MODE_PRIVATE:String = "private";
 		public static const MODE_PUBLIC:String = "public";
 		
-		public var id:String;
 		private var _name:String;
+		
+		public var createdAt:Date;
+		public var id:String;
 		public var fullName:String;
 		public var slug:String;
 		public var description:String;
@@ -33,12 +35,8 @@ package com.dborisenko.api.twitter.data
 		public var uri:String;
 		public var mode:String = MODE_PUBLIC;
 		public var user:TwitterUser;
+		public var following:Boolean = false;
 		
-		public function TwitterList(list:Object)
-		{
-			super();
-			parseXML(list);
-		}
 		
 		[Bindable("dataChange")]
 		public function get name():String
@@ -51,6 +49,33 @@ package com.dborisenko.api.twitter.data
 				return;
 			_name = value;
 			dispatchDataChangeEvent();
+		}
+
+		
+		public function TwitterList(list:Object, isXML:Boolean = false)
+		{
+			super();
+			if(isXML){
+				parseXML(list);
+			}else{
+				parseJSON(list)
+			}
+		}
+		
+		
+		public function parseJSON(json:Object):void{
+			this.createdAt = new Date(Date.parse(json['created_at']));
+			this.slug = json['slug'];
+			this.name = json['name'];
+			this.fullName = json['full_name'];
+			this.description = json['description'];
+			this.mode = json['mode'];
+			this.following = json['following'];
+			this.memberCount = json['member_count'];
+			this.id = json['id_str'];
+			this.subscriberCount = json['subscriber_count'];
+			this.uri = json['uri'];
+			this.user = new TwitterUser(json['user']);
 		}
 
 		public function parseXML(list:Object):void

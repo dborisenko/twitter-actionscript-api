@@ -20,20 +20,34 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	 */
 	public class ListMembershipsLoader extends PagingLoader
 	{
-		protected var user:String;
+		protected var userId:String;
+		protected var screenName:String;
+		protected var ownedlists:Boolean = false;
 		
+		/**
+		 * 
+		 * @param userId        Optional. The id of the user for whom to return results for. If blank, defaults to authenticated user.
+		 * 
+		 * @param screenName    Optional. The screen name of the whom to return results for. If blank, defaults to authenticated user.
+		 * 
+		 * @param ownedLists   Optional. When set to true will return just lists the authenticating user owns and the user represented
+		 *                        by userId or screenName is a member of.
+		 * 
+		 */
 		public function ListMembershipsLoader(api:TwitterAPI,
-											  user:String,
+											  userId:String = null, screenName:String = null, ownedLists:Boolean = false,
 											  postType:String=TwitterAPI.POST_TYPE_NORMAL, 
 											  priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
 		{
 			super(api, LoadListMemberships, postType, priority, list);
-			this.user = user;
+			this.userId = userId;
+			this.screenName = screenName;
+			this.ownedlists = ownedLists;
 		}
 		
 		override protected function createOperation() : TwitterOperation
 		{
-			return new LoadListMemberships(user);
+			return new LoadListMemberships(userId, screenName, '-1', ownedlists);
 		}
 	}
 }

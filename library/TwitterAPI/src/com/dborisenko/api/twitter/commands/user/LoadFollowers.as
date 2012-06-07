@@ -46,14 +46,14 @@ package com.dborisenko.api.twitter.commands.user
 		 *                        sure if Flash can handle the larger numbers.
 		 * 
 		 */
-		public function LoadFollowers(id:String=null, userId:String=null, screenName:String=null, cursor:String="-1", stringIds:Boolean = true)
+		public function LoadFollowers(userId:String=null, screenName:String=null, cursor:String="-1", stringIds:Boolean = true)
 		{
 			super(URL, true);
 			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {id: id, user_id: userId, screen_name: screenName, cursor: cursor, stringify_ids:stringIds}
+			parameters = {user_id: userId, screen_name: screenName, cursor: cursor, stringify_ids:stringIds}
 		}
 		
 		/**

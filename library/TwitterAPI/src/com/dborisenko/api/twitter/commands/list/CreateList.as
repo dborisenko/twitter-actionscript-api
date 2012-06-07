@@ -14,28 +14,27 @@ package com.dborisenko.api.twitter.commands.list
 	 * Creates a new list for the authenticated user. Accounts are limited to 20 lists. 
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-POST-lists
+	 * @see https://dev.twitter.com/docs/api/1/post/lists/create
 	 */
 	public class CreateList extends ListOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://api.twitter.com/1/{user}/lists.xml";
+		protected static const URL:String = "https://api.twitter.com/1/lists/create.json";
 		
 		/**
 		 * 
-		 * @param user
 		 * @param name				Required.  The name of the list you are creating.
 		 * @param mode				Optional. Whether your list is public or private. 
 		 * 							Values can be public or private. Lists are public by default if no mode is specified.
 		 * @param description		Optional.  The description of the list you are creating.
 		 * 
 		 */
-		public function CreateList(user:String, name:String, mode:String=null, description:String=null)
+		public function CreateList(name:String, mode:String = null, description:String = null)
 		{
-			super(URL.replace(/\{user\}/gi, user));
-			resultFormat = ResultFormat.XML;
+			super(URL);
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
