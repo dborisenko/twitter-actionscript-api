@@ -15,14 +15,14 @@ package com.dborisenko.api.twitter.commands.directMessage
 	 * The XML and JSON versions include detailed information about the sending and recipient users. 
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-direct_messages%C2%A0sent
+	 * @see https://dev.twitter.com/docs/api/1/get/direct_messages/sent
 	 */
 	public class LoadSentDirectMessages extends DirectMessagesOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/direct_messages/sent.xml";
+		protected static const URL:String = "https://api.twitter.com/1/direct_messages/sent.json";
 		
 		/**
 		 * 
@@ -34,18 +34,18 @@ package com.dborisenko.api.twitter.commands.directMessage
 		 * 						Example: max_id=54321 
 		 * @param count			Optional.  Specifies the number of direct messages to retrieve. May not be greater than 200.  
 		 * 						Example: count=5
-		 * @param page			Optional. Specifies the page of direct messages to retrieve.
-		 * 						Example: page=3
+		 * 
+		 * @param entities      Optional. Whether or not to include entities in the response statuses.
 		 * 
 		 */
-		public function LoadSentDirectMessages(sinceId:String=null, maxId:String=null, count:int=-1, page:int=-1)
+		public function LoadSentDirectMessages(sinceId:String=null, maxId:String=null, count:int=-1, entities:Boolean = true)
 		{
 			super(URL, true);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {since_id: sinceId, max_id: maxId, count: count, page: page};
+			parameters = {since_id: sinceId, max_id: maxId, count: count, include_entities:entities};
 		}
 	}
 }

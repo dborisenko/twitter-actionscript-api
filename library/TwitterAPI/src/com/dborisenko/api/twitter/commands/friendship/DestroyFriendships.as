@@ -16,36 +16,36 @@ package com.dborisenko.api.twitter.commands.friendship
 	 * Returns a string describing the failure condition when unsuccessful.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-friendships%C2%A0destroy
+	 * @see https://dev.twitter.com/docs/api/1/post/friendships/destroy
 	 */
 	public class DestroyFriendships extends UserOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/friendships/destroy/{id}.xml";
+		protected static const URL:String = "http://api.twitter.com/1/friendships/destroy.json";
 		
 		/**
-		 * One of the following is required:
-		 * 
-		 * @param id			Required. The ID or screen name of the user to unfollow.  
-		 * 						Example: 12345 or bob
-		 * @param userId		Required. Specfies the ID of the user to unfollow. 
+		 * One of userId or screenName is required:
+		 * @param userId	    Optional. Specfies the ID of the user to unfollow. 
 		 * 						Helpful for disambiguating when a valid user ID is also a valid screen name. 
 		 * 						Example: user_id=1401881
-		 * @param screenName	Required. Specfies the screen name of the user to unfollow. 
+		 * 
+		 * @param screenName	Optional. Specfies the screen name of the user to unfollow. 
 		 * 						Helpful for disambiguating when a valid screen name is also a user ID. 
 		 * 						Example: screen_name=101010
 		 * 
+		 * @param entities      Optional. Whether or not to include entities in the status tweets returned.
+		 * 
 		 */
-		public function DestroyFriendships(id:String, userId:String=null, screenName:String=null)
+		public function DestroyFriendships(userId:String = null, screenName:String = null, entities:Boolean = true)
 		{
-			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			super(URL);
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {id: id, user_id: userId, screen_name: screenName};
+			parameters = {user_id: userId, screen_name: screenName, include_entities:entities};
 		}
 	}
 }

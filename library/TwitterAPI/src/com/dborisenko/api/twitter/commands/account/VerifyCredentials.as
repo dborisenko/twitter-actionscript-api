@@ -16,22 +16,28 @@ package com.dborisenko.api.twitter.commands.account
 	 * Use this method to test if supplied user credentials are valid. 
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-account%C2%A0verify_credentials
+	 * @see https://dev.twitter.com/docs/api/1/get/account/verify_credentials
 	 */
 	public class VerifyCredentials extends UserOperation
 	{
 		/**
 		 * @private
+		 * 
+		 * @param entities          Optional. Whether or not to include tweet entities in the response status.
+		 * 
+		 * @param skipStatus        Optional. Whether or not to skip the status in the user response.
+		 * 
 		 */
-		protected static const URL:String = "http://twitter.com/account/verify_credentials.xml";
+		protected static const URL:String = "http://api.twitter.com/1/account/verify_credentials.json";
 		
-		public function VerifyCredentials()
+		public function VerifyCredentials(entities:Boolean = true, skipStatus:Boolean = false)
 		{
 			super(URL);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
+			this.parameters = {include_entities:entities, skip_status:skipStatus};
 		}
 	}
 }

@@ -29,19 +29,40 @@ package com.dborisenko.api.twitter.data
 		
 		public var isSent:Boolean = false;
 		
-		public function TwitterDirectMessage(directMessage:Object)
+		public function TwitterDirectMessage(directMessage:Object, isXML:Boolean = false)
 		{
 			super();
 			
-			createdAt = new Date(Date.parse(directMessage.created_at.toString()));//CreatedAtDate.parse(directMessage.created_at);
-			id = directMessage.id;
-			senderId = directMessage.sender_id;
-			text = directMessage.text;
-			recipientId = directMessage.recipient_id;
-			senderScreenName = directMessage.sender_screen_name;
-			recipientScreenName = directMessage.recipient_screen_name;
-			sender = new TwitterUser(directMessage.sender);
-			recipient = new TwitterUser(directMessage.recipient);
+			if(isXML){
+				parseXML(directMessage);
+			}else{
+				parseJSON(directMessage);
+			}
+		}
+		
+		public function parseJSON(dm:Object):void{
+			createdAt = new Date(Date.parse(dm['created_at'].toString()));//CreatedAtDate.parse(directMessage.created_at);
+			id = dm['id'];
+			text = dm['text'];
+			senderId = dm['sender_id'];
+			recipientId = dm['recipient_id'];
+			senderScreenName = dm['sender_screen_name'];
+			recipientScreenName = dm['recipient_screen_name'];
+			sender = new TwitterUser(dm['sender']);
+			recipient = new TwitterUser(dm['recipient']);
+		}
+		
+		public function parseXML(dm:Object):void{
+			
+			createdAt = new Date(Date.parse(dm.created_at.toString()));//CreatedAtDate.parse(directMessage.created_at);
+			id = dm.id;
+			senderId = dm.sender_id;
+			text = dm.text;
+			recipientId = dm.recipient_id;
+			senderScreenName = dm.sender_screen_name;
+			recipientScreenName = dm.recipient_screen_name;
+			sender = new TwitterUser(dm.sender);
+			recipient = new TwitterUser(dm.recipient);
 		}
 		
 	}

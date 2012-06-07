@@ -51,12 +51,10 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
-			var xml:XML = getXML();
-        	if (xml.name() == "direct_message")
-        	{
-	        	directMessage = new TwitterDirectMessage(xml);
-	        	directMessage.isSent = isSent;
-        	}
+			var json:Object = getJSON();
+			directMessage = new TwitterDirectMessage(json);
+			directMessage.isSent = isSent;
+			
             super.handleResult(event);
         }
 	}

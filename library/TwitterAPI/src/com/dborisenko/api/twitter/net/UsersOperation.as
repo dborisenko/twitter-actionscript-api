@@ -58,23 +58,34 @@ package com.dborisenko.api.twitter.net
 			
 			var json:Object = getJSON();
 			var userData:Array = [];
-			if(json is Array){
-				userData = json as Array;
-				users = new ArrayCollection(); //this is a straight list that doesn't have pagination. Like this: https://dev.twitter.com/docs/api/1/get/users/lookup
-			}else if(json['users']){
-				userData = json['users']; // this will be a paginated list of users. Like this: https://dev.twitter.com/docs/api/1/get/blocks/blocking
-				users = new UsersCollection();
+			//if it's a call for a list of users, go ahead and get us some real TwitterUser objects and return them.
+			if((json is Array) || (json['users'])){
+				
+				if(json is Array){
+					userData = json as Array;
+					users = new ArrayCollection(); //this is a straight list that doesn't have pagination. Like this: https://dev.twitter.com/docs/api/1/get/users/lookup
+				}else if(json['users']){
+					userData = json['users']; // this will be a paginated list of users. Like this: https://dev.twitter.com/docs/api/1/get/blocks/blocking
+					users = new UsersCollection();
+					UsersCollection(users).nextCursor = json['next_cursor_str'];
+					UsersCollection(users).previousCursor = json['previous_cursor_str'];
+				}
+				
+				for each(var item:Object in userData){
+					var user:TwitterUser = new TwitterUser(item);
+					user.isFollower = followers;
+					user.isBlocked = blocked;
+					users.addItem(user);
+				}
+			}
+			//if it's a list of User Ids (we're getting followers or friends, for example), then put the IDs in a UserCollection.
+			//It'll be up to the programmer to use the UsersLookup operation to fill out the data.
+			if(json['ids']){
+				users = new UsersCollection(json['ids']);
 				UsersCollection(users).nextCursor = json['next_cursor_str'];
 				UsersCollection(users).previousCursor = json['previous_cursor_str'];
 			}
 			
-			
-			for each(var item:Object in userData){
-				var user:TwitterUser = new TwitterUser(item);
-				user.isFollower = followers;
-				user.isBlocked = blocked;
-				users.addItem(user);
-			}
 			
          	super.handleResult(event);
         }

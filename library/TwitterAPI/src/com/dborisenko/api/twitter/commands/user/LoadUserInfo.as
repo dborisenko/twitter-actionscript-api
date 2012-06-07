@@ -15,19 +15,18 @@ package com.dborisenko.api.twitter.commands.user
 	 * The author's most recent status will be returned inline.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-users%C2%A0show
+	 * @see https://dev.twitter.com/docs/api/1/get/users/show
 	 */
 	public class LoadUserInfo extends UserOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/users/show.xml";
+		protected static const URL:String = "http://api.twitter.com/version/users/show.json";
 		
 		/**
+		 * userId or screenName is required.
 		 * 
-		 * @param id			The ID or screen name of a user.
-		 * 						Example: 12345 or bob
 		 * @param userId		Specfies the ID of the user to return. Helpful for disambiguating 
 		 * 						when a valid user ID is also a valid screen name.
 		 * 						Example: user_id=1401881
@@ -35,15 +34,16 @@ package com.dborisenko.api.twitter.commands.user
 		 * 						when a valid screen name is also a user ID.
 		 * 						Example: screen_name=101010
 		 * 
+		 * @param entities      Optional. Whether or not to include entities in the user's status.
 		 */
-		public function LoadUserInfo(id:String, userId:String=null, screenName:String=null)
+		public function LoadUserInfo(userId:String = null, screenName:String = null, entities:Boolean = true)
 		{
 			super(URL);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {id: id, user_id: userId, screen_name: screenName};
+			parameters = {user_id: userId, screen_name: screenName, include_entities:entities};
 		}
 	}
 }

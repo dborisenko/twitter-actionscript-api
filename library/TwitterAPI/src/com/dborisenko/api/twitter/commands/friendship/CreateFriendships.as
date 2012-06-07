@@ -17,7 +17,7 @@ package com.dborisenko.api.twitter.commands.friendship
 	 * If you are already friends with the user an HTTP 403 will be returned.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-friendships%C2%A0create
+	 * @see https://dev.twitter.com/docs/api/1/post/friendships/create
 	 * @see http://apiwiki.twitter.com/HTTP-Response-Codes-and-Errors
 	 */
 	public class CreateFriendships extends UserOperation
@@ -25,12 +25,10 @@ package com.dborisenko.api.twitter.commands.friendship
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/friendships/create/{id}.xml";
+		protected static const URL:String = "http://api.twitter.com/1/friendships/create.json";
 		
 		/**
-		 * One of the id, user_id or screen_name is required
-		 * @param id			Required. The ID or screen name of the user to befriend. 
-		 * 						Example: 12345 or bob
+		 * One of the user_id or screen_name is required
 		 * @param userId		Required. Specfies the ID of the user to befriend. 
 		 * 						Helpful for disambiguating when a valid user ID is also a valid screen name. 
 		 * 						Example: user_id=1401881
@@ -41,14 +39,14 @@ package com.dborisenko.api.twitter.commands.friendship
 		 * 						Example: follow=true
 		 * 
 		 */
-		public function CreateFriendships(id:String, userId:String=null, screenName:String=null, follow:String=null)
+		public function CreateFriendships(userId:String = null, screenName:String = null, follow:Boolean = false)
 		{
-			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			super(URL);
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {id: id, user_id: userId, screen_name: screenName, follow:follow};
+			parameters = {user_id: userId, screen_name: screenName, follow:follow};
 		}
 	}
 }

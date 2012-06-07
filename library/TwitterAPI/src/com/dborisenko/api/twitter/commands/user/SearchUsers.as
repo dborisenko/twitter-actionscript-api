@@ -18,14 +18,14 @@ package com.dborisenko.api.twitter.commands.user
 	 * It is only possible to retrieve the first 1000 matches from this API.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-users-search
+	 * @see https://dev.twitter.com/docs/api/1/get/users/search
 	 */
 	public class SearchUsers extends UsersOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://api.twitter.com/1/users/search.xml";
+		protected static const URL:String = "http://api.twitter.com/1/users/search.json";
 		
 		/**
 		 * 
@@ -36,15 +36,17 @@ package com.dborisenko.api.twitter.commands.user
 		 * @param page		Optional. Specifies the page of results to retrieve.
 		 * 					Example: q=Doug%20Williams&page=3 
 		 * 
+		 * @param entities  Optional. Whether or not to include entities in the response statuses.
+		 * 
 		 */
-		public function SearchUsers(query:String, perPage:int=-1, page:int=-1)
+		public function SearchUsers(query:String, perPage:int = -1, page:int = -1, entities:Boolean = true)
 		{
 			super(URL);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {q: query, per_page: perPage, page: page};
+			parameters = {q: query, per_page: perPage, page: page, include_entities:entities};
 		}
 	}
 }
