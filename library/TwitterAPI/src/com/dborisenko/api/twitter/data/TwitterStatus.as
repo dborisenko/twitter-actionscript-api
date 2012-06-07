@@ -68,9 +68,10 @@ package com.dborisenko.api.twitter.data
 			{
 				if(isSearch){
 					parseSearchJSON(status);
-					this.user = new TwitterUser(status, false, true);	//status, isXml, isSearch
+					this.user = new TwitterUser(status['user'], false, true);	//status, isXml, isSearch
 				}else{
 					parseJSON(status);
+					this.user = new TwitterUser(status['user'], false, false);
 				}
 			}
 		}

@@ -32,7 +32,7 @@ package com.dborisenko.api.twitter.data
 		public var followersCount:Number;
 		public var createdAt:Date;
 		public var favouritesCount:Number;
-		public var utcOffset:String;
+		public var utcOffset:int;
 		public var timeZone:String;
 		private var _following:Boolean;
 		public var notifications:Boolean;
