@@ -120,8 +120,8 @@ package com.dborisenko.api.twitter.data
 			if(status['entities']){
 				var e:Object;
 				//add URLs
+				this.urls = new Vector.<TwitterEntity>();
 				if(status['entities']['urls']){
-					this.urls = new Vector.<TwitterEntity>();
 					for each(e in status['entities']['urls']){
 						var newURL:TwitterEntity = new TwitterEntity();
 						newURL.parseJSON(e, TwitterEntity.ENTITY_TYPE_URL);
@@ -131,8 +131,8 @@ package com.dborisenko.api.twitter.data
 				}
 				
 				//add Hashtags
+				this.hashtags = new Vector.<TwitterEntity>();
 				if(status['entities']['hashtags']){
-					this.hashtags = new Vector.<TwitterEntity>();
 					for each(e in status['entities']['hashtags']){
 						var newHash:TwitterEntity = new TwitterEntity();
 						newHash.parseJSON(e, TwitterEntity.ENTITY_TYPE_HASHTAG);
@@ -141,14 +141,17 @@ package com.dborisenko.api.twitter.data
 				}
 				
 				//add mentions
+				this.userMentions = new Vector.<TwitterEntity>();
 				if(status['entities']['user_mentions']){
-					this.userMentions = new Vector.<TwitterEntity>();
 					for each(e in status['entities']['user_mentions']){
 						var newMention:TwitterEntity = new TwitterEntity();
 						newMention.parseJSON(e, TwitterEntity.ENTITY_TYPE_MENTION);
 						this.userMentions.push(newMention);
 					}	
 				}
+				
+				//mush them all together.
+				this.entities = this.urls.concat(this.hashtags, this.userMentions);
 				
 			}
 			
