@@ -7,6 +7,7 @@
  */
 package com.dborisenko.api.twitter
 {
+	import com.dborisenko.api.twitter.interfaces.ITwitterOperation;
 	import com.dborisenko.api.twitter.net.TwitterOperation;
 	import com.dborisenko.api.twitter.oauth.OAuthTwitterConnection;
 	import com.dborisenko.api.twitter.utils.AsyncQueue;
@@ -106,8 +107,8 @@ package com.dborisenko.api.twitter
 		 * @return 				Twitter Operation
 		 * 
 		 */		
-		public function post(operation:TwitterOperation, postType:String=POST_TYPE_NORMAL,
-							 priority:int=PRIORITY_NORMAL):TwitterOperation
+		public function post(operation:ITwitterOperation, postType:String=POST_TYPE_NORMAL,
+							 priority:int=PRIORITY_NORMAL):ITwitterOperation
 		{
 			switch (postType)
 			{
@@ -125,13 +126,13 @@ package com.dborisenko.api.twitter
 		/**
 		 * @private 
 		 */
-		protected function postAsyncStatic(operation:TwitterOperation, priority:int=PRIORITY_NORMAL):TwitterOperation
+		protected function postAsyncStatic(operation:ITwitterOperation, priority:int=PRIORITY_NORMAL):ITwitterOperation
 		{
 			if (operation.requiresAuthentication)
 			{
 				if (connection.consumer && connection.accessToken)
 				{
-					operation.twitter_internal::setTwitterAPI(this);
+					operation.setTwitterAPI(this);
 					staticAsyncQueue.executeOperation(operation, priority);
 				}
 				else
@@ -149,13 +150,13 @@ package com.dborisenko.api.twitter
 		/**
 		 * @private 
 		 */
-		protected function postAsync(operation:TwitterOperation, priority:int=PRIORITY_NORMAL):TwitterOperation
+		protected function postAsync(operation:ITwitterOperation, priority:int=PRIORITY_NORMAL):ITwitterOperation
 		{
 			if (operation.requiresAuthentication)
 			{
 				if (connection.consumer && connection.accessToken)
 				{
-					operation.twitter_internal::setTwitterAPI(this);
+					operation.setTwitterAPI(this);
 					asyncQueue.executeOperation(operation, priority);
 				}
 				else
@@ -173,13 +174,13 @@ package com.dborisenko.api.twitter
 		/**
 		 * @private 
 		 */
-		protected function postSync(operation:TwitterOperation):TwitterOperation
+		protected function postSync(operation:ITwitterOperation):ITwitterOperation
 		{
 			if (operation.requiresAuthentication)
 			{
 				if (connection.consumer && connection.accessToken)
 				{
-					operation.twitter_internal::setTwitterAPI(this);
+					operation.setTwitterAPI(this);
 					operation.execute();
 				}
 				else

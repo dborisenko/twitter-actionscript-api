@@ -128,7 +128,7 @@ package com.dborisenko.api.twitter.net
 		/**
 		 * @private
 		 */
-		twitter_internal function setTwitterAPI(api:TwitterAPI):void
+		public function setTwitterAPI(api:TwitterAPI):void
 		{
 			twitterAPI = api;
 		}

@@ -72,10 +72,11 @@ package com.dborisenko.api
 			serviceDelegate.params = params;
 			serviceDelegate.resultFormat = resultFormat;
 			serviceDelegate.url = url;
-			
 			serviceDelegate.addEventListener(ResultEvent.RESULT, handleResult);
 			serviceDelegate.addEventListener(FaultEvent.FAULT, handleFault);
 			serviceDelegate.send();
+			
+			
         }
 		
 		protected function handleResult(event:Event):void

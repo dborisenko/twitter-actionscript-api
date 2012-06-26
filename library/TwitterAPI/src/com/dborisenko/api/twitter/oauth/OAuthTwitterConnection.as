@@ -154,7 +154,6 @@ package com.dborisenko.api.twitter.oauth
 			
 			var oauthRequest:OAuthRequest = new OAuthRequest(OAuthRequest.HTTP_METHOD_GET, REQUEST_TOKEN_URL, null, consumer);
 			var url:String = oauthRequest.buildRequest(signatureMethod);
-			
 			var service:HTTPService = new HTTPService();
 			service.url = url;
 			service.addEventListener(ResultEvent.RESULT, handleRequestToken);
