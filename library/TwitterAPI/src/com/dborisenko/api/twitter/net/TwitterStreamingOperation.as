@@ -1,6 +1,9 @@
 package com.dborisenko.api.twitter.net
 {
 	import com.dborisenko.api.twitter.TwitterAPI;
+	import com.dborisenko.api.twitter.commands.streaming.StreamingParser;
+	import com.dborisenko.api.twitter.data.StreamingObject;
+	import com.dborisenko.api.twitter.events.TwitterStreamingEvent;
 	import com.dborisenko.api.twitter.interfaces.ITwitterOperation;
 	import com.dborisenko.api.twitter.twitter_internal;
 	
@@ -56,7 +59,8 @@ package com.dborisenko.api.twitter.net
 		protected var _apiRateLimited:Boolean = true;
 		
 		
-		[Event(name="complete",type="com.dborisenko.api.twitter.events.TwitterEvent")]
+		[Event(name="progress",type="com.dborisenko.api.twitter.events.TwitterStreamingEvent")]
+		[Event(name="streamError",type="com.dborisenko.api.twitter.events.TwitterStreamingEvent")]
 		
 		public function TwitterStreamingOperation(url:String, requiresAuthentication:Boolean = true, params:Object=null)
 		{
@@ -129,7 +133,9 @@ package com.dborisenko.api.twitter.net
 		
 		private function onStreamError(event:IOErrorEvent):void
 		{
+			urlStream.close();
 			trace("Twitter Streaming IO Error: " + event.toString()); 
+			dispatchEvent(new TwitterStreamingEvent(TwitterStreamingEvent.STREAM_ERROR, null, false, event));
 		}
 		
 		
@@ -153,12 +159,16 @@ package com.dborisenko.api.twitter.net
 			//if we have something, loop over what we have.
 			if(jsonParts.length > 0){
 				jsonBuffer = ""; // clear buffer, we've read it into this chunk.
+				var parser:StreamingParser = new StreamingParser();
 				for each(var json:String in jsonParts){
 					if(json.length != 0){
 						try{
 							//docs are totally worthless here. I assume it'll throw an error if the data isn't valid JSON. ie. incomplete.
 							var newData:Object = JSON.parse(json);
 							//DO PARSING.
+							var output:StreamingObject = parser.parseData(newData);
+							//notify we have progress.
+							dispatchEvent(new TwitterStreamingEvent(TwitterStreamingEvent.PROGRESS, output, true, newText));
 						} catch(e:Error){
 							jsonBuffer += json; // didn't parse, add this text back.
 						}
