@@ -107,6 +107,11 @@ package com.dborisenko.api.twitter.net
 		}
 		
 		
+		public function closeStream():void
+		{
+			urlStream.close();
+		}
+		
 		/**
 		 * Event handling
 		 **/
@@ -123,6 +128,12 @@ package com.dborisenko.api.twitter.net
 		
 		private function onHTTPResponseStatus(event:HTTPStatusEvent):void
 		{
+			if(event.status > 200){
+				//something went WRONG.
+				urlStream.close();
+				dispatchEvent(new TwitterStreamingEvent(TwitterStreamingEvent.STREAM_ERROR, null, false, event));
+			}
+			
 			trace("Twitter Streaming On HTTP Response Status: " + event.status);
 		}
 		
