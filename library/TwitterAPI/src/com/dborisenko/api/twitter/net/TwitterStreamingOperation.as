@@ -109,7 +109,8 @@ package com.dborisenko.api.twitter.net
 		
 		public function closeStream():void
 		{
-			urlStream.close();
+			if(urlStream.connected)
+				urlStream.close();
 		}
 		
 		/**
