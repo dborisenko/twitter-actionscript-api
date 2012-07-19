@@ -40,7 +40,8 @@ package com.dborisenko.api.twitter.data
 		public var urls:Vector.<TwitterEntity> = null;
 		public var hashtags:Vector.<TwitterEntity> = null;
 		public var userMentions:Vector.<TwitterEntity> = null;
-		public var entities:Vector.<TwitterEntity> = null; // This would be a collection of the 3 above.
+		public var media:Vector.<TwitterEntity> = null;
+		public var entities:Vector.<TwitterEntity> = null; // This would be a collection of the 4 above.
 		public var annotations:Object = null; // no idea what this is.
 		//search
 		public var resultType:String;
@@ -150,8 +151,17 @@ package com.dborisenko.api.twitter.data
 					}	
 				}
 				
+				this.media = new Vector.<TwitterEntity>();
+				if(status['entities']['media']){
+					for each(e in status['entities']['media']){
+						var newMedia:TwitterEntity = new TwitterEntity();
+						newMedia.parseJSON(e, TwitterEntity.ENTITY_TYPE_MEDIA);
+						this.media.push(newMedia);
+					}	
+				}
+				
 				//mush them all together.
-				this.entities = this.urls.concat(this.hashtags, this.userMentions);
+				this.entities = this.urls.concat(this.hashtags, this.userMentions, this.media);
 				
 			}
 			

@@ -13,11 +13,12 @@ package com.dborisenko.api.twitter.data
 		public static const TYPE_EVENT:String = "event";
 		public static const TYPE_CONTROL:String = "control";
 		public static const TYPE_MESSAGE:String = "message";
+		public static const TYPE_EMPTY:String = "empty";
 		public static const TYPE_UNKNOWN:String = "unknown";
 		
 		
 		public var data:Object;
-		public var type:String;
+		public var type:String = TYPE_EMPTY;
 		
 		public function StreamingObject(data:Object, type:String)
 		{

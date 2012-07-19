@@ -169,7 +169,7 @@ package com.dborisenko.api.twitter.net
 			
 			var jsonParts:Array = jsonBuffer.split(/\r\n/); //Newline ends an object. Examples are showing \n, docs hint to use \r\n. Hrm.
 			//if we have something, loop over what we have.
-			if(jsonParts.length > 0){
+			if(newText != "\r\n"){
 				jsonBuffer = ""; // clear buffer, we've read it into this chunk.
 				var parser:StreamingParser = new StreamingParser();
 				for each(var json:String in jsonParts){
@@ -186,6 +186,8 @@ package com.dborisenko.api.twitter.net
 						}
 					}
 				}
+			}else{
+				dispatchEvent(new TwitterStreamingEvent(TwitterStreamingEvent.PROGRESS, new StreamingObject({}, StreamingObject.TYPE_EMPTY), true, newText));
 			}
 			trace("Twitter Streaming JSON parsed");
 		}
