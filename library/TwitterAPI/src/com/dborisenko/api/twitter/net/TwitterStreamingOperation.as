@@ -261,7 +261,8 @@ package com.dborisenko.api.twitter.net
 				trace("Parameter: " + key + " Value: " + params[key]);
 				if ( ((params[key] is String) && (params[key] != null)) ||
 					((params[key] is int) && (params[key] != -1)) ||
-					(params[key] is Boolean)
+					(params[key] is Boolean) ||
+					((params[key] is Array) && ((params[key] as Array).length != 0))
 					
 				)
 				{
