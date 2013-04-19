@@ -8,6 +8,7 @@
 package com.dborisenko.api.twitter.utils
 {
 	import com.dborisenko.api.twitter.events.TwitterEvent;
+	import com.dborisenko.api.twitter.interfaces.ITwitterOperation;
 	import com.dborisenko.api.twitter.net.TwitterOperation;
 	
 	import flash.events.Event;
@@ -24,7 +25,7 @@ package com.dborisenko.api.twitter.utils
 	public class AsyncQueue
 	{
 		protected var operationsQueue:ArrayCollection;
-		protected var currentOperation:TwitterOperation;
+		protected var currentOperation:ITwitterOperation;
 		
 		protected var priorities:Dictionary;
 		
@@ -59,7 +60,7 @@ package com.dborisenko.api.twitter.utils
 			operationsQueue.refresh();
 		}
 		
-		public function executeOperation(operation:TwitterOperation, priority:int=5):void
+		public function executeOperation(operation:ITwitterOperation, priority:int=5):void
 		{
 			if (!operation)
 				return;
@@ -78,7 +79,7 @@ package com.dborisenko.api.twitter.utils
 		{
 			if (operationsQueue.length > 0)
 			{
-				currentOperation = operationsQueue.removeItemAt(0) as TwitterOperation;
+				currentOperation = operationsQueue.removeItemAt(0) as ITwitterOperation;
 				delete priorities[currentOperation];
 				currentOperation.addEventListener(TwitterEvent.COMPLETE, handleOperationComplete);
 				

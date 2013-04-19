@@ -16,34 +16,34 @@ package com.dborisenko.api.twitter.commands.directMessage
 	 * Returns the sent message in the requested format when successful.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-direct_messages%C2%A0new
+	 * @see https://dev.twitter.com/docs/api/1/post/direct_messages/new
 	 */
 	public class NewDirectMessage extends DirectMessageOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/direct_messages/new.xml";
+		protected static const URL:String = "https://api.twitter.com/1/direct_messages/new.json";
 		
 		/**
+		 * One of either the userId or the screenName must be sent.
 		 * 
-		 * @param recipient			user:  Required.  The ID or screen name of the recipient user. 
-		 * 							In order to support numeric screen names we will accept either of the following 
-		 * 							two parameters in place of the user parameter:
-		 * 								* screen_name: screen name of the recipient user
-		 * 								* user_id: user id of the recipient user
+		 * @param userId            Optional. The Id of the User to send the tweet to.
+		 * 
+		 * @param screenName        Optional. The screen name of the User to sent the tweet to.
+		 * 
 		 * @param text				Required.  The text of your direct message.  Be sure to URL encode as necessary, 
 		 * 							and keep it under 140 characters.
 		 * 
 		 */
-		public function NewDirectMessage(recipient:Object, text:String)
+		public function NewDirectMessage(userId:String = null, screenName:String = null, text:String = "")
 		{
 			super(URL, true, null, true);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {user: getScreenName(recipient), text: text};
+			parameters = { user_id:userId, screen_name: screenName, text: text};
 		}
 	}
 }

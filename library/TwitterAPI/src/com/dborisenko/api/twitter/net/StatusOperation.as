@@ -47,12 +47,9 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
-			var xml:XML = getXML();
-        	if (xml.name() == "status")
-        	{
-	        	status = new TwitterStatus(xml);
-        	}
-            super.handleResult(event);
+			var json:Object = getJSON();
+			status = new TwitterStatus(json);
+        	super.handleResult(event);
         }
 	}
 }

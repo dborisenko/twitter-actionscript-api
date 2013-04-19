@@ -47,19 +47,20 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
 		{
-			var xml:XML = getXML();
-			if (xml.name() == "lists_list")
-			{
+			
+			var json:Object = getJSON();
+			
+			if(json['lists']){
 				lists = new ListsCollection();
-				lists.nextCursor = xml.next_cursor.toString();
-				lists.previousCursor = xml.previous_cursor.toString();
+				lists.nextCursor = json['next_cursor_str'];
+				lists.previousCursor = json['previous_cursor_str'];
 				
-				for each (var item:XML in xml.lists.list)
-				{
+				for each (var item:Object in json['lists']){
 					var list:TwitterList = new TwitterList(item);
 					lists.addItem(list);
 				}
 			}
+			
 			super.handleResult(event);
 		}
 	}

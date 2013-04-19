@@ -14,14 +14,14 @@ package com.dborisenko.api.twitter.commands.block
 	 * Returns an array of user objects that the authenticating user is blocking.
 	 *  
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter+REST+API+Method%3A-blocks-blocking
+	 * @see https://dev.twitter.com/docs/api/1/get/blocks/blocking
 	 */
 	public class LoadBlockedUsers extends UsersOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/blocks/blocking.xml";
+		protected static const URL:String = "http://api.twitter.com/1/blocks/blocking.json";
 		
 		/**
 		 * 
@@ -29,15 +29,23 @@ package com.dborisenko.api.twitter.commands.block
 		 * 						A single page contains 20 ids.
 		 * 						Example: page=1
 		 * 
+		 * @param perPage       Optional. Number of results per page. Docs don't specify a limit...
+		 * 
+		 * @param entities      Optional. Whether or not to include entities in response.
+		 * 
+		 * @param skipStatus    Optional. Whether or not to skip user statuses in response.
+		 * 
+		 * 
+		 * 
 		 */
-		public function LoadBlockedUsers(page:int=-1)
+		public function LoadBlockedUsers(page:int = -1, perPage:int = 20, entities:Boolean = true, skipStatus:Boolean = false)
 		{
 			super(URL, false, true);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {page: page};
+			parameters = {page: page, per_page:perPage, include_entities:entities, skip_status:skipStatus};
 		}
 	}
 }

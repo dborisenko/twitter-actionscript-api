@@ -15,14 +15,14 @@ package com.dborisenko.api.twitter.commands.favorite
 	 * specified by the ID parameter in the requested format.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-favorites
+	 * @see https://dev.twitter.com/docs/api/1/get/favorites
 	 */
 	public class LoadFavorites extends StatusesOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/favorites.xml";
+		protected static const URL:String = "https://api.twitter.com/1/favorites.json";
 		
 		/**
 		 * 
@@ -30,14 +30,15 @@ package com.dborisenko.api.twitter.commands.favorite
 		 * @param page		Optional. Specifies the page of favorites to retrieve.
 		 * 
 		 */
-		public function LoadFavorites(id:String=null, page:int=-1)
+		public function LoadFavorites(userId:String = null, screenName:String = null, count:int = 200, sinceId:String = null,
+										maxId:String = null, entities:Boolean = true)
 		{
 			super(URL);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {id: id, page: page};
+			parameters = {user_id: userId, screen_name:screenName, count:count, since_id:sinceId, max_id:maxId, include_entities:entities};
 		}
 	}
 }

@@ -15,14 +15,14 @@ package com.dborisenko.api.twitter.commands.favorite
 	 * Returns the un-favorited status in the requested format when successful.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-favorites%C2%A0destroy
+	 * @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
 	 */
 	public class DestroyFavorite extends StatusOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/favorites/destroy/{id}.xml";
+		protected static const URL:String = "https://api.twitter.com/1/favorites/destroy/{id}.json";
 		
 		/**
 		 * 
@@ -32,7 +32,7 @@ package com.dborisenko.api.twitter.commands.favorite
 		public function DestroyFavorite(id:String)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;

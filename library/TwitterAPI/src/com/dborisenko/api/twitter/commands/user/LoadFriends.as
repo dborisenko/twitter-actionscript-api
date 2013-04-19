@@ -12,26 +12,23 @@ package com.dborisenko.api.twitter.commands.user
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
 	/**
-	 * Returns a user's friends, each with current status inline. They are ordered by the order in which the user 
-	 * followed them, most recently followed first, 100 at a time. (Please note that the result set isn't guaranteed 
-	 * to be 100 every time as suspended users will be filtered out.) Use the cursor option to access older friends. 
-	 * With no user specified, request defaults to the authenticated user's friends. It's also possible to request 
-	 * another user's friends list via the id, screen_name or user_id parameter.
+	 * NOTE: The previous command, http://twitter.com/statuses/friends.xml, has been deprecated. Instead of getting 100 users
+	 * and their statuses, you must instead use the friends/ids command and use that list of ids to get user details using the
+	 * users/lookup command. the friends/ids command will return up to 5000 user ids as well as a cursor to navigate them.
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses%C2%A0friends
+	 * @see https://dev.twitter.com/docs/api/1/get/friends/ids
 	 */
 	public class LoadFriends extends UsersOperation implements IPagingOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/statuses/friends.xml";
+		protected static const URL:String = "http://api.twitter.com/1/friends/ids.json";
 		
 		/**
+		 * You must provide either a userId or a screenName.
 		 * 
-		 * @param id			Optional.  The ID or screen name of the user for whom to request a list of friends.
-		 * 						Example: 12345 or bob
 		 * @param userId		Optional.  Specfies the ID of the user for whom to return the list of friends. 
 		 * 						Helpful for disambiguating when a valid user ID is also a valid screen name.
 		 * 						Example: user_id=1401881
@@ -44,15 +41,18 @@ package com.dborisenko.api.twitter.commands.user
 		 * 						and previous_cursor attributes to page back and forth in the list.
 		 * 						Example: cursor=-1 or cursor=1300794057949944903
 		 * 
+		 * @param stringIds     Optional. Whether or not to make the returned user ids into strings. This defaults
+		 *                        to true because I'm not sure if Flash can handle the large numbers.
+		 * 
 		 */
-		public function LoadFriends(id:String=null, userId:String=null, screenName:String=null, cursor:String="-1")
+		public function LoadFriends(userId:String=null, screenName:String=null, cursor:String="-1", stringIds:Boolean = true)
 		{
 			super(URL, false);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {id: id, user_id: userId, screen_name: screenName, cursor: cursor};
+			parameters = {user_id: userId, screen_name: screenName, cursor: cursor, stringify_ids:stringIds};
 		}
 		
 		/**

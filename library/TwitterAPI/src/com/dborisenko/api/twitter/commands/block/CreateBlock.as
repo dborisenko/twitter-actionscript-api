@@ -17,7 +17,7 @@ package com.dborisenko.api.twitter.commands.block
 	 * http://help.twitter.com/forums/10711/entries/15355 
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-blocks%C2%A0create
+	 * @see https://dev.twitter.com/docs/api/1/post/blocks/create
 	 * @see http://help.twitter.com/forums/10711/entries/15355
 	 */
 	public class CreateBlock extends UserOperation
@@ -25,28 +25,30 @@ package com.dborisenko.api.twitter.commands.block
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/blocks/create/{id}.xml";
+		protected static const URL:String = "https://api.twitter.com/1/blocks/create.json";
 		
 		/**
 		 * One of the following parameters is required
-		 * @param id 			Optional.  The ID or screen_name of the potentially blocked user.
-		 * 						Example: id=bob
-		 * @param userId		Optional.  Specfies the ID of the potentially blocked user. 
+		 * @param userId		Required.  Specfies the ID of the potentially blocked user. 
 		 * 						Helpful for disambiguating when a valid user ID is also a valid screen name.
 		 * 						Example: user_id=1401881
 		 * @param screenName	Optional.  Specfies the screen name of the potentially blocked user. 
 		 * 						Helpful for disambiguating when a valid screen name is also a user ID.
 		 * 						Example: screen_name=101010
 		 * 
+		 * @param entities      Optional. Whether or not to return entities in the response.
+		 * 
+		 * @param skip_status   Optional. Whether or not to include statuses with the returned user object.
+		 * 
 		 */
-		public function CreateBlock(id:String, userId:String=null, screenName:String=null)
+		public function CreateBlock(userId:String, screenName:String = null, entities:Boolean = true, skipStatus:Boolean = false)
 		{
-			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			super(URL);
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {id: id, user_id: userId, screen_name: screenName};
+			parameters = {user_id: userId, screen_name: screenName, include_entities:entities, skip_status:skipStatus};
 		}
 	}
 }

@@ -31,12 +31,12 @@ package com.dborisenko.api.twitter.commands.account
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/account/rate_limit_status.xml";
+		protected static const URL:String = "http://api.twitter.com/1/account/rate_limit_status.json";
 		
 		public function RateLimitStatus()
 		{
 			super(URL);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
@@ -58,10 +58,8 @@ package com.dborisenko.api.twitter.commands.account
 		 */		
 		override protected function handleResult(event:Event) : void
 		{
-			var hash:Dictionary = parseHash(getXML());
-			rateLimit = new TwitterRateLimit(
-				hash["remaining-hits"] as int, hash["hourly-limit"] as int, hash["reset-time-in-seconds"] as int
-			);
+			var json:Object = getJSON();
+			rateLimit = new TwitterRateLimit(json);
 			super.handleResult(event);
 		}
 	}

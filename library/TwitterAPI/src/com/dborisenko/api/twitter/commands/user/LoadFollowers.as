@@ -12,24 +12,24 @@ package com.dborisenko.api.twitter.commands.user
 	import com.dborisenko.api.twitter.net.UsersOperation;
 	
 	/**
-	 * Returns the authenticating user's followers, each with current status inline.  They are ordered by the order 
-	 * in which they followed the user, 100 at a time. (Please note that the result set isn't guaranteed to be 100 
-	 * every time as suspended users will be filtered out.) Use the cursor option to access earlier followers.
+	 * 
+	 * NOTE: The previous command, http://twitter.com/statuses/followers.xml, has been deprecated. Instead we have
+	 * to use a new command that just gets the ids (up to 5,000) of the followers. From there a cursor can navigate
+	 * the responses. We can then use the users/lookup command to get the details of up to 100 users at a time.
+	 * 
 	 * 
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses%C2%A0followers
+	 * @see https://dev.twitter.com/docs/api/1/get/followers/ids
 	 */
 	public class LoadFollowers extends UsersOperation implements IPagingOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/statuses/followers.xml";
+		protected static const URL:String = "http://api.twitter.com/1/followers/ids.json";
 		
 		/**
 		 * 
-		 * @param id			Optional.  The ID or screen name of the user for whom to request a list of followers. 
-		 * 						Example: 12345 or bob
 		 * @param userId		Optional.  Specfies the ID of the user for whom to return the list of followers. 
 		 * 						Helpful for disambiguating when a valid user ID is also a valid screen name.
 		 * 						Example: user_id=1401881
@@ -42,20 +42,23 @@ package com.dborisenko.api.twitter.commands.user
 		 * 						and previous_cursor attributes to page back and forth in the list.
 		 * 						Example: cursor=-1 or cursor=1300794057949944903
 		 * 
+		 * @param stringIds     Optional. returns the IDs as strings instead of ints. Defaults to true because I'm not
+		 *                        sure if Flash can handle the larger numbers.
+		 * 
 		 */
-		public function LoadFollowers(id:String=null, userId:String=null, screenName:String=null, cursor:String="-1")
+		public function LoadFollowers(userId:String=null, screenName:String=null, cursor:String="-1", stringIds:Boolean = true)
 		{
 			super(URL, true);
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_GET;
 			_requiresAuthentication = true;
 			_apiRateLimited = true;
-			parameters = {id: id, user_id: userId, screen_name: screenName, cursor: cursor}
+			parameters = {user_id: userId, screen_name: screenName, cursor: cursor, stringify_ids:stringIds}
 		}
 		
 		/**
 		 * 
-		 * Optional. Breaks the results into pages. A single page contains 100 users. 
+		 * Optional. Breaks the results into pages. A single page contains 5000 user Ids. 
 		 * This is recommended for users who are followed by many other users. Provide a value 
 		 * of  -1 to begin paging. Provide values as returned to in the response body's next_cursor 
 		 * and previous_cursor attributes to page back and forth in the list.

@@ -8,6 +8,8 @@
 package com.dborisenko.api.twitter.interfaces
 {
 	import com.dborisenko.api.interfaces.IOperation;
+	import com.dborisenko.api.twitter.TwitterAPI;
+	import com.dborisenko.api.twitter.twitter_internal;
 	
 	/**
 	 * 
@@ -30,5 +32,7 @@ package com.dborisenko.api.twitter.interfaces
 		 * 
 		 */
 		function get apiRateLimited():Boolean;
+		
+		function setTwitterAPI(api:TwitterAPI):void
 	}
 }

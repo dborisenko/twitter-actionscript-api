@@ -20,19 +20,34 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 	 */
 	public class FollowersLoader extends PagingLoader
 	{
-		protected var id:String;
+		
 		protected var userId:String;
 		protected var screenName:String;
+		protected var stringIds:Boolean = true;
 		
+		/**
+		 * @param API           Required. The API to execute this command against.
+		 * 
+		 * @param userId		Optional.  Specfies the ID of the user for whom to return the list of followers. 
+		 * 						  Helpful for disambiguating when a valid user ID is also a valid screen name.
+		 * 						  Example: user_id=1401881
+		 * @param screenName	Optional.  Specfies the screen name of the user for whom to return the list of followers. 
+		 *   						Helpful for disambiguating when a valid screen name is also a user ID.
+		 * 	     					Example: screen_name=101010
+		 * 
+		 * @param stringIds     Optional. returns the IDs as strings instead of ints. Defaults to true because I'm not
+		 *                        sure if Flash can handle the larger numbers.
+		 * 
+		 */
 		public function FollowersLoader(api:TwitterAPI, 
-										id:String=null, userId:String=null, screenName:String=null,
+										userId:String = null, screenName:String = null, stringIds:Boolean = true,
 										postType:String=TwitterAPI.POST_TYPE_NORMAL, 
 										priority:int=TwitterAPI.PRIORITY_NORMAL, list:ArrayCollection=null)
 		{
 			super(api, LoadFollowers, postType, priority, list);
-			this.id = id;
 			this.userId = userId;
 			this.screenName = screenName;
+			this.stringIds = stringIds;
 		}
 		
 		public function get followersList():ArrayCollection
@@ -42,7 +57,7 @@ package com.dborisenko.api.twitter.utils.loaders.pagingLoaders
 		
 		override protected function createOperation() : TwitterOperation
 		{
-			return new LoadFollowers(id, userId, screenName);
+			return new LoadFollowers(userId, screenName, "-1", stringIds) //cursor is overridden in PagingLoader.
 		}
 	}
 }

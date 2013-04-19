@@ -52,18 +52,17 @@ package com.dborisenko.api.twitter.net
 		 */
 		override protected function handleResult(event:Event) : void
         {
-			var xml:XML = getXML();
-        	if (xml.name() == "direct-messages")
-        	{
-	        	directMessages = new DirectMessagesCollection();
-	        	
-	            for each (var item:XML in xml.direct_message)
-	        	{
-	        		var dm:TwitterDirectMessage = new TwitterDirectMessage(item);
-	        		dm.isSent = isSent;
-	        		directMessages.addItem(dm);
-	        	}
-        	}
+			
+			var json:Object = getJSON(); //array of dm objects.
+			directMessages = new DirectMessagesCollection();
+			
+			for each (var item:Object in json)
+			{
+				var dm:TwitterDirectMessage = new TwitterDirectMessage(item);
+				dm.isSent = isSent;
+				directMessages.addItem(dm);
+			}
+			
             super.handleResult(event);
         }
 	}

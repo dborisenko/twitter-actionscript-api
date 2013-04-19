@@ -43,6 +43,8 @@ package com.dborisenko.api.twitter.net
 			data = value;
 		}
 		
+		
+		
 		/**
 		 * 
 		 * @private
@@ -58,7 +60,7 @@ package com.dborisenko.api.twitter.net
         		var array:Array = json["results"] as Array;
         		for each (var item:Object in array)
         		{
-        			var status:TwitterStatus = new TwitterStatus(item, null, false);
+        			var status:TwitterStatus = new TwitterStatus(item, null, false, true); //last param is if it is a search.
         			res.addItem(status);
         		}
         		searchData.results = res;
@@ -66,6 +68,10 @@ package com.dborisenko.api.twitter.net
         	if ("query" in json)
         	{
         		searchData.query = json["query"].toString();
+				searchData.maxResultId = json['max_id_str'];
+				searchData.nextPage = json['next_page'];
+				searchData.page = json['page'];
+				searchData.refreshURL = json['refresul_url'];
 //        		searchData.query = data.query.replace(/%40/g, "@");
 //				searchData.query = data.query.replace(/%23/g, "#");
         	}

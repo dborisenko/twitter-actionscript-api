@@ -15,28 +15,29 @@ package com.dborisenko.api.twitter.commands.directMessage
 	 * The authenticating user must be the recipient of the specified direct message.
 	 *  
 	 * @author Denis Borisenko
-	 * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-direct_messages%C2%A0destroy
+	 * @see https://dev.twitter.com/docs/api/1/post/direct_messages/destroy/%3Aid
 	 */
 	public class DestroyDirectMessage extends DirectMessageOperation
 	{
 		/**
 		 * @private
 		 */
-		protected static const URL:String = "http://twitter.com/direct_messages/destroy/{id}.xml";
+		protected static const URL:String = "http://api.twitter.com/1/direct_messages/destroy/{id}.json";
 		
 		/**
 		 *  
 		 * @param id		Required.  The ID of the direct message to destroy. 
 		 * 
+		 * @param entities  Optional. Returns entity metadata in the destroyed tweet body.
 		 */
-		public function DestroyDirectMessage(id:String)
+		public function DestroyDirectMessage(id:String, entities:Boolean = true)
 		{
 			super(URL.replace(/\{id\}/gi, id));
-			resultFormat = ResultFormat.XML;
+			resultFormat = ResultFormat.JSON;
 			method = METHOD_POST;
 			_requiresAuthentication = true;
 			_apiRateLimited = false;
-			parameters = {id: id};
+			parameters = {id: id, include_entities:entities};
 		}
 	}
 }
